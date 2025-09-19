@@ -3,7 +3,7 @@ import AuthLayout from '@/layout/AuthLayout';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
-import ConfirmAccount from '@/pages/ConfirmAccount';
+import VerifyAccount from '@/pages/VerifyAccount';
 
 export default function App() {
   return (
@@ -13,7 +13,7 @@ export default function App() {
           <Route index element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='forgot-password' element={<ForgotPassword />} />
-          <Route path='verify/:token' element={<ConfirmAccount />} />
+          <Route path='verify/:token' element={<VerifyAccount />} />
         </Route>
       </Routes>
     </BrowserRouter>
