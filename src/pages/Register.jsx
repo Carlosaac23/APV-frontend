@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import axios from 'axios';
+import axiosClient from '@/config/axios';
 import Footer from '@/components/Footer';
 
 export default function Register() {
@@ -12,14 +12,13 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { VITE_BACKEND_URL } = import.meta.env;
 
     if ([name, email, password, confirmPassword].includes('')) {
       return toast.warning('Hay campos vacíos');
     }
 
     if (password !== confirmPassword) {
-      return toast.error('Las contraseñas no son las mismas');
+      return toast.error('Las contraseñas no coinciden.');
     }
 
     if (password.length < 6) {
@@ -27,13 +26,10 @@ export default function Register() {
     }
 
     try {
-      const url = `${VITE_BACKEND_URL}/api/veterinarians`;
-      await axios.post(url, { name, email, password });
+      await axiosClient.post('/veterinarians', { name, email, password });
       toast.success('Cuenta creada exitosamente. Revisa tu correo.');
     } catch (error) {
-      if (error) {
-        toast.error(error.response.data.msg);
-      }
+      toast.error(error.response.data.msg);
     }
   }
 
