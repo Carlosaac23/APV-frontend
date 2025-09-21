@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { toast } from 'sonner';
-import axios from 'axios';
+import axiosClient from '../config/axios';
 
 export default function VerifyAccount() {
   const { VITE_BACKEND_URL } = import.meta.env;
@@ -14,8 +14,8 @@ export default function VerifyAccount() {
   useEffect(() => {
     const verifyAccount = async () => {
       try {
-        const url = `${VITE_BACKEND_URL}/api/veterinarians/verify/${token}`;
-        const { data } = await axios(url);
+        const url = `/veterinarians/verify/${token}`;
+        const { data } = await axiosClient(url);
 
         toast.success(data.msg);
         setAccountConfirmed(true);
