@@ -6,7 +6,7 @@ import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Toaster richColors />
+    <Toaster duration={3000} richColors />
     <App />
   </StrictMode>,
 );
