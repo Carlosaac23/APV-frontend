@@ -1,10 +1,21 @@
-import { Outlet } from 'react-router';
+import { Outlet, Navigate } from 'react-router';
+import useAuth from '@/hooks/useAuth';
+import Header from '@/components/Header';
 
 export default function AdminLayout() {
+  const { auth, loading } = useAuth();
+
+  if (loading) return 'Cargando...';
   return (
     <>
-      <h1>Esta es una ruta de Admin/protegida</h1>
-      <Outlet />
+      <Header />
+      {auth?._id ? (
+        <main className='container mx-auto mt-10'>
+          <Outlet />
+        </main>
+      ) : (
+        <Navigate to='/' />
+      )}
     </>
   );
 }
