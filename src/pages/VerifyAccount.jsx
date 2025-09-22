@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { toast } from 'sonner';
-import axiosClient from '../config/axios';
+import axiosClient from '@/config/axios';
 
 export default function VerifyAccount() {
   const { VITE_BACKEND_URL } = import.meta.env;
