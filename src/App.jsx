@@ -11,6 +11,8 @@ import ForgotPassword from '@/pages/ForgotPassword';
 import VerifyAccount from '@/pages/VerifyAccount';
 import NewPassword from '@/pages/NewPassword';
 import Admin from '@/pages/Admin';
+import EditProfile from '@/pages/EditProfile';
+import ChangePassword from '@/pages/ChangePassword';
 
 export default function App() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
 
             <Route path='/admin' element={<AdminLayout />}>
               <Route index element={<Admin />} />
+              <Route path='profile' element={<EditProfile />} />
+              <Route path='change-password' element={<ChangePassword />} />
             </Route>
           </Routes>
         </PatientsProvider>
