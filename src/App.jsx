@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AuthProvider } from '@/context/AuthProvider';
+import { PatientsProvider } from '@/context/PatientsProvider';
+
 import AuthLayout from '@/layout/AuthLayout';
 import AdminLayout from '@/layout/AdminLayout';
 
@@ -14,19 +16,21 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path='/' element={<AuthLayout />}>
-            <Route index element={<Login />} />
-            <Route path='register' element={<Register />} />
-            <Route path='forgot-password' element={<ForgotPassword />} />
-            <Route path='forgot-password/:token' element={<NewPassword />} />
-            <Route path='verify/:token' element={<VerifyAccount />} />
-          </Route>
+        <PatientsProvider>
+          <Routes>
+            <Route path='/' element={<AuthLayout />}>
+              <Route index element={<Login />} />
+              <Route path='register' element={<Register />} />
+              <Route path='forgot-password' element={<ForgotPassword />} />
+              <Route path='forgot-password/:token' element={<NewPassword />} />
+              <Route path='verify/:token' element={<VerifyAccount />} />
+            </Route>
 
-          <Route path='/admin' element={<AdminLayout />}>
-            <Route index element={<Admin />} />
-          </Route>
-        </Routes>
+            <Route path='/admin' element={<AdminLayout />}>
+              <Route index element={<Admin />} />
+            </Route>
+          </Routes>
+        </PatientsProvider>
       </AuthProvider>
     </BrowserRouter>
   );
