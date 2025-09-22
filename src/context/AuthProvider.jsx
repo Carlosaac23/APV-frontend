@@ -41,6 +41,29 @@ export function AuthProvider({ children }) {
     setAuth({});
   }
 
+  async function updateProfile(userData) {
+    console.log(userData);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return setLoading(false);
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const url = `/veterinarians/profile/${userData._id}`;
+      const { data } = await axiosClient.put(url, userData, config);
+      return toast.success('Datos guardados exitosamente.');
+    } catch (error) {
+      return toast.error(error.response.data.msg);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -48,6 +71,7 @@ export function AuthProvider({ children }) {
         setAuth,
         loading,
         logOut,
+        updateProfile,
       }}
     >
       {children}
