@@ -1,6 +1,8 @@
 import formatDate from '@/helpers/formatDate';
+import usePatients from '@/hooks/usePatients';
 
 export default function Patient({ patient }) {
+  const { setEdition, deletePatient } = usePatients();
   const { name, owner, email, date, symptoms, _id } = patient;
 
   return (
@@ -36,6 +38,7 @@ export default function Patient({ patient }) {
         <button
           type='button'
           className='rounded-md bg-sky-500 px-6 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
+          onClick={() => setEdition(patient)}
         >
           Editar
         </button>
@@ -43,6 +46,7 @@ export default function Patient({ patient }) {
         <button
           type='button'
           className='rounded-md bg-red-500 px-6 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-red-600 active:scale-97'
+          onClick={() => deletePatient(_id)}
         >
           Eliminar
         </button>
