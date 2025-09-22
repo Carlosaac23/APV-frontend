@@ -27,17 +27,7 @@ export default function Admin() {
         </div>
       </div>
 
-      <div>
-        {showForm ? (
-          <Footer />
-        ) : (
-          <>
-            <div className='fixed right-0 bottom-0 left-0'>
-              <Footer />
-            </div>
-          </>
-        )}
-      </div>
+      <Footer />
     </>
   );
 }
