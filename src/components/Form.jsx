@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import usePatients from '@/hooks/usePatients';
 
@@ -8,8 +8,20 @@ export default function Form() {
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
+  const [id, setId] = useState(null);
 
-  const { savePatient } = usePatients();
+  const { savePatient, patient } = usePatients();
+
+  useEffect(() => {
+    if (patient?.name) {
+      setName(patient.name);
+      setOwner(patient.owner);
+      setEmail(patient.email);
+      setDate(new Date(patient.date).toLocaleDateString('es-CO'));
+      setSymptoms(patient.symptoms);
+      setId(patient._id);
+    }
+  }, [patient]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,8 +36,15 @@ export default function Form() {
       email,
       date,
       symptoms,
+      id,
     });
     toast.success('Paciente agregado exitosamente.');
+    setName('');
+    setOwner('');
+    setEmail('');
+    setDate('');
+    setSymptoms('');
+    setId('');
   }
 
   return (
@@ -121,7 +140,7 @@ export default function Form() {
 
         <input
           type='submit'
-          value='Agregar Paciente'
+          value={id ? 'Guardar Cambios' : 'Agregar Paciente'}
           className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
         />
       </form>
