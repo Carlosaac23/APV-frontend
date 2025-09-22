@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { toast } from 'sonner';
 import axiosClient from '@/config/axios';
-import Footer from '@/components/Footer';
 
 export default function NewPassword() {
   const [password, setPassword] = useState('');
@@ -61,10 +60,14 @@ export default function NewPassword() {
         {validToken && (
           <form onSubmit={handleSubmit}>
             <div>
-              <label className='mb-1 block text-sm font-medium text-neutral-700'>
+              <label
+                htmlFor='new-password'
+                className='mb-1 block text-sm font-medium text-neutral-700'
+              >
                 Nueva contraseña
               </label>
               <input
+                id='new-password'
                 type='password'
                 className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
                 placeholder='Nueva contraseña'
@@ -91,7 +94,7 @@ export default function NewPassword() {
             <input
               type='submit'
               value='Guardar Contraseña'
-              className='mt-4 w-full cursor-pointer rounded-md bg-sky-500 py-2 text-neutral-50 transition-transform duration-150 ease-out hover:bg-sky-600 active:scale-97'
+              className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
             />
           </form>
         )}
@@ -106,9 +109,6 @@ export default function NewPassword() {
             </Link>
           </nav>
         )}
-      </div>
-      <div className='fixed right-0 bottom-0 left-0'>
-        <Footer />
       </div>
     </>
   );

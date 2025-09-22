@@ -2,7 +2,6 @@ import { Link } from 'react-router';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import axiosClient from '@/config/axios';
-import Footer from '@/components/Footer';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -44,10 +43,14 @@ export default function Register() {
       <div className='mt-10 rounded-md border border-neutral-300 p-4 shadow-sm'>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
-            <label className='mb-1 block text-sm font-medium text-neutral-700'>
+            <label
+              htmlFor='name'
+              className='mb-1 block text-sm font-medium text-neutral-700'
+            >
               Nombre
             </label>
             <input
+              id='name'
               type='text'
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               placeholder='John Doe'
@@ -57,10 +60,14 @@ export default function Register() {
           </div>
 
           <div className='mb-4'>
-            <label className='mb-1 block text-sm font-medium text-neutral-700'>
+            <label
+              htmlFor='email'
+              className='mb-1 block text-sm font-medium text-neutral-700'
+            >
               Correo Eléctronico
             </label>
             <input
+              id='email'
               type='email'
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               placeholder='johndoe@hotmail.com'
@@ -70,10 +77,14 @@ export default function Register() {
           </div>
 
           <div className='mb-4'>
-            <label className='mb-1 block text-sm font-medium text-neutral-700'>
+            <label
+              htmlFor='password'
+              className='mb-1 block text-sm font-medium text-neutral-700'
+            >
               Contraseña
             </label>
             <input
+              id='password'
               type='password'
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               placeholder='password123'
@@ -98,10 +109,14 @@ export default function Register() {
           </div>
 
           <div className='mb-4'>
-            <label className='mb-1 block text-sm font-medium text-neutral-700'>
+            <label
+              htmlFor='confirm-password'
+              className='mb-1 block text-sm font-medium text-neutral-700'
+            >
               Confirmar Contraseña
             </label>
             <input
+              id='confirm-password'
               type='password'
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               placeholder='password123'
@@ -113,7 +128,7 @@ export default function Register() {
           <input
             type='submit'
             value='Crear Cuenta'
-            className='mt-4 w-full cursor-pointer rounded-md bg-sky-500 py-2 text-neutral-50 transition-transform duration-150 ease-out hover:bg-sky-600 active:scale-97'
+            className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
           />
         </form>
 
@@ -131,9 +146,6 @@ export default function Register() {
             Olvidé mi contraseña
           </Link>
         </nav>
-      </div>
-      <div className='fixed right-0 bottom-0 left-0'>
-        <Footer />
       </div>
     </>
   );
