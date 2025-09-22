@@ -20,7 +20,7 @@ export default function Header() {
             Pacientes
           </Link>
           <Link
-            to='/admin'
+            to='/admin/profile'
             className='text-sm font-bold text-neutral-50 hover:underline hover:underline-offset-2 lg:text-base'
           >
             Perfil
