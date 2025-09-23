@@ -15,20 +15,20 @@ export default function Header() {
         <nav className='flex gap-4'>
           <Link
             to='/admin'
-            className='text-sm font-bold text-neutral-50 hover:underline hover:underline-offset-2 lg:text-base'
+            className='text-sm font-bold text-neutral-50 hover:underline hover:underline-offset-3 lg:text-base'
           >
             Pacientes
           </Link>
           <Link
             to='/admin/profile'
-            className='text-sm font-bold text-neutral-50 hover:underline hover:underline-offset-2 lg:text-base'
+            className='text-sm font-bold text-neutral-50 hover:underline hover:underline-offset-3 lg:text-base'
           >
             Perfil
           </Link>
 
           <button
             type='button'
-            className='text-sm font-bold text-neutral-50 hover:cursor-pointer hover:underline hover:underline-offset-2 lg:text-base'
+            className='text-sm font-bold text-neutral-50 hover:cursor-pointer hover:underline hover:underline-offset-3 lg:text-base'
             onClick={logOut}
           >
             Cerrar Sesión
