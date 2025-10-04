@@ -19,7 +19,6 @@ interface PatientsContextProps {
 const AuthContext = createContext<PatientsContextProps | null>(null);
 
 export function AuthProvider({ children }: ChildrenProps) {
-  console.log(children);
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -57,7 +56,6 @@ export function AuthProvider({ children }: ChildrenProps) {
   }
 
   async function updateProfile(userData: PatientType) {
-    console.log(userData);
     const token = localStorage.getItem('token');
     if (!token) {
       return setLoading(false);
@@ -95,7 +93,6 @@ export function AuthProvider({ children }: ChildrenProps) {
     try {
       const url = '/veterinarians/update-password';
       const { data } = await axiosClient.put(url, userData, config);
-      console.log(data);
       return toast.success(data.msg);
     } catch (error: any) {
       return toast.error(error.response.data.msg);

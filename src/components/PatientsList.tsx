@@ -4,7 +4,6 @@ import Patient from './Patient';
 
 export default function PatientsList() {
   const { patients } = usePatients();
-  console.log(patients);
   return (
     <>
       {patients.length ? (

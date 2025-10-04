@@ -67,7 +67,7 @@ export function PatientsProvider({ children }: ChildrenProps) {
           statePatient._id === data._id ? data : statePatient,
         );
         setPatients(updatedPatients);
-        toast.success('Holaaaaa');
+        toast.success('Paciente actualizado correctamente');
       } catch (error) {
         console.error(error);
       }
