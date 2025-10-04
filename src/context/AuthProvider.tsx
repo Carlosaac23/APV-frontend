@@ -25,8 +25,8 @@ export function AuthProvider({ children }) {
       try {
         const { data } = await axiosClient('/veterinarians/profile', config);
         setAuth(data);
-      } catch (error) {
-        toast.error(error.response.data.msg);
+      } catch (error: any) {
+        toast.error(error.response?.data?.msg || 'Error de autenticación');
         setAuth({});
       }
 

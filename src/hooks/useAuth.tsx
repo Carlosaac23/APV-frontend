@@ -1,6 +1,11 @@
 import { useContext } from 'react';
 import AuthContext from '@/context/AuthProvider';
 
-export default function useAuth() {
+interface AuthState {
+  auth: any;
+  loading: boolean;
+}
+
+export default function useAuth(): AuthState {
   return useContext(AuthContext);
 }

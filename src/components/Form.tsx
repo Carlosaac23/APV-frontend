@@ -23,7 +23,7 @@ export default function Form() {
     }
   }, [patient]);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: Event) {
     e.preventDefault();
 
     if ([name, owner, email, date, symptoms].includes('')) {
