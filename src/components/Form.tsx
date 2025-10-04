@@ -8,7 +8,7 @@ export default function Form() {
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
-  const [id, setId] = useState(null);
+  const [id, setId] = useState<string | null>(null);
 
   const { savePatient, patient } = usePatients();
 
@@ -23,7 +23,7 @@ export default function Form() {
     }
   }, [patient]);
 
-  function handleSubmit(e: Event) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if ([name, owner, email, date, symptoms].includes('')) {
