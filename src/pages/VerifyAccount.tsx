@@ -19,8 +19,8 @@ export default function VerifyAccount() {
 
         toast.success(data.msg);
         setAccountConfirmed(true);
-      } catch (error) {
-        toast.error(error.response.data.msg);
+      } catch (error: any) {
+        toast.error(error.response?.data?.msg || 'Error de autenticación');
       }
 
       setLoading(false);

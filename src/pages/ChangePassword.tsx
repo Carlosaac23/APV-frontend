@@ -11,7 +11,7 @@ export default function ChangePassword() {
     new_password: '',
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (Object.values(password).some((input) => input === '')) {

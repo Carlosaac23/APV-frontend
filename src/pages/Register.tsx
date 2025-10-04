@@ -9,7 +9,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if ([name, email, password, confirmPassword].includes('')) {
@@ -27,8 +27,8 @@ export default function Register() {
     try {
       await axiosClient.post('/veterinarians', { name, email, password });
       toast.success('Cuenta creada exitosamente. Revisa tu correo.');
-    } catch (error) {
-      toast.error(error.response.data.msg);
+    } catch (error: any) {
+      toast.error(error.response?.data?.msg || 'Error de servidor');
     }
   }
 

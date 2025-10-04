@@ -11,7 +11,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if ([email, password].includes('')) {
@@ -27,7 +27,7 @@ export default function Login() {
       localStorage.setItem('token', data.token);
       setAuth(data);
       navigate('/admin');
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.response.data.msg);
     }
   }

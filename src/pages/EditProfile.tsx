@@ -3,16 +3,23 @@ import { toast } from 'sonner';
 import AdminNav from '@/components/AdminNav';
 import useAuth from '@/hooks/useAuth';
 
+interface ProfileContextProps {
+  name: string;
+  email: string;
+  phone: string;
+  web: string;
+}
+
 export default function EditProfile() {
   const { auth, updateProfile } = useAuth();
 
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState<ProfileContextProps>({});
 
   useEffect(() => {
     setProfile(auth);
   }, [auth]);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const { name, email, phone, web } = profile;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
 import axiosClient from '@/config/axios';
@@ -6,7 +6,7 @@ import axiosClient from '@/config/axios';
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (email === '' || email.length < 6) {
@@ -22,7 +22,7 @@ export default function ForgotPassword() {
       );
 
       toast.success(data.msg);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.response.data.msg);
     }
   }

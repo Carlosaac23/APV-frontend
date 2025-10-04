@@ -17,7 +17,7 @@ export default function NewPassword() {
         await axiosClient(`/veterinarians/forgot-password/${token}`);
         toast.success('Ingresa tu nueva contraseña.');
         setValidToken(true);
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error.message);
         toast.error('Hubo un error con el enlace.');
       }
@@ -26,7 +26,7 @@ export default function NewPassword() {
     verifyToken();
   }, [token]);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (password === '') {
@@ -42,7 +42,7 @@ export default function NewPassword() {
       const { data } = await axiosClient.post(url, { password });
       toast.success(data.msg);
       setNewPassword(true);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.message);
       toast.error(error.response.data.msg);
     }
