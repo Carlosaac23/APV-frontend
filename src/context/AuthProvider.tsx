@@ -1,10 +1,25 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, ReactElement } from 'react';
 import { toast } from 'sonner';
+import type { PatientType } from '@/types/patient';
 import axiosClient from '@/config/axios';
 
-const AuthContext = createContext();
+interface ChildrenProps {
+  children: ReactElement;
+}
 
-export function AuthProvider({ children }) {
+interface PatientsContextProps {
+  auth: {};
+  patients: PatientType[];
+  savePatient: (patient: PatientType) => Promise<void>;
+  setEdition: (patient: PatientType) => void;
+  patient: PatientType | {};
+  deletePatient: (id: string) => Promise<void>;
+}
+
+const AuthContext = createContext<PatientsContextProps | null>(null);
+
+export function AuthProvider({ children }: ChildrenProps) {
+  console.log(children);
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -41,7 +56,7 @@ export function AuthProvider({ children }) {
     setAuth({});
   }
 
-  async function updateProfile(userData) {
+  async function updateProfile(userData: PatientType) {
     console.log(userData);
     const token = localStorage.getItem('token');
     if (!token) {
@@ -59,12 +74,12 @@ export function AuthProvider({ children }) {
       const url = `/veterinarians/profile/${userData._id}`;
       const { data } = await axiosClient.put(url, userData, config);
       return toast.success('Datos guardados exitosamente.');
-    } catch (error) {
+    } catch (error: any) {
       return toast.error(error.response.data.msg);
     }
   }
 
-  async function savePassword(userData) {
+  async function savePassword(userData: PatientType) {
     const token = localStorage.getItem('token');
     if (!token) {
       return setLoading(false);
@@ -82,7 +97,7 @@ export function AuthProvider({ children }) {
       const { data } = await axiosClient.put(url, userData, config);
       console.log(data);
       return toast.success(data.msg);
-    } catch (error) {
+    } catch (error: any) {
       return toast.error(error.response.data.msg);
     }
   }

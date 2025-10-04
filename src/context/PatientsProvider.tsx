@@ -1,13 +1,26 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, ReactElement } from 'react';
 import { toast } from 'sonner';
+import type { PatientType } from '@/types/patient';
 import axiosClient from '@/config/axios';
 import useAuth from '@/hooks/useAuth';
 
-const PatientsContext = createContext();
+interface ChildrenProps {
+  children: ReactElement;
+}
 
-export function PatientsProvider({ children }) {
-  const [patients, setPatients] = useState([]);
-  const [patient, setPatient] = useState({});
+interface PatientsContextProps {
+  patients: PatientType[];
+  savePatient: (patient: PatientType) => Promise<void>;
+  setEdition: (patient: PatientType) => void;
+  patient: PatientType | {};
+  deletePatient: (id: string) => Promise<void>;
+}
+
+const PatientsContext = createContext<PatientsContextProps | null>(null);
+
+export function PatientsProvider({ children }: ChildrenProps) {
+  const [patients, setPatients] = useState<PatientType[]>([]);
+  const [patient, setPatient] = useState<PatientType | {}>({});
   const { auth } = useAuth();
 
   useEffect(() => {
@@ -33,7 +46,7 @@ export function PatientsProvider({ children }) {
     getPatients();
   }, [auth]);
 
-  async function savePatient(patient) {
+  async function savePatient(patient: PatientType) {
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -63,17 +76,17 @@ export function PatientsProvider({ children }) {
         const { data } = await axiosClient.post('/patients', patient, config);
         const { createdAt, updatedAt, __v, ...storedPatient } = data;
         setPatients([storedPatient, ...patients]);
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error.response.data.msg);
       }
     }
   }
 
-  function setEdition(patient) {
+  function setEdition(patient: PatientType) {
     setPatient(patient);
   }
 
-  async function deletePatient(id) {
+  async function deletePatient(id: string) {
     const confirmMsg = confirm('¿Seguro que quieres eliminar este paciente?');
     if (confirmMsg) {
       try {
