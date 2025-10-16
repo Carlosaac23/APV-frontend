@@ -8,13 +8,13 @@ interface ChildrenProps {
 }
 
 interface PatientsContextProps {
-  auth: {};
+  auth: unknown;
   patients: PatientType[];
   savePatient: (patient: PatientType) => Promise<string | number | void>;
   setEdition: (patient: PatientType) => void;
-  patient: PatientType | {};
+  patient: PatientType | unknown;
   deletePatient: (id: string) => Promise<void>;
-  setAuth: React.Dispatch<React.SetStateAction<{}>>;
+  setAuth: React.Dispatch<React.SetStateAction<unknown>>;
   loading: boolean;
   logOut: () => void;
   updateProfile: (userData: PatientType) => Promise<string | number | void>;
@@ -24,7 +24,7 @@ interface PatientsContextProps {
 const AuthContext = createContext<PatientsContextProps | null>(null);
 
 export function AuthProvider({ children }: ChildrenProps) {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState<unknown>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

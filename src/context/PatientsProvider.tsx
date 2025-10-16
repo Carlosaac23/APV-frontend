@@ -12,7 +12,7 @@ interface PatientsContextProps {
   patients: PatientType[];
   savePatient: (patient: PatientType) => Promise<void>;
   setEdition: (patient: PatientType) => void;
-  patient: PatientType | {};
+  patient: PatientType | unknown;
   deletePatient: (id: string) => Promise<void>;
 }
 
@@ -20,7 +20,7 @@ const PatientsContext = createContext<PatientsContextProps | null>(null);
 
 export function PatientsProvider({ children }: ChildrenProps) {
   const [patients, setPatients] = useState<PatientType[]>([]);
-  const [patient, setPatient] = useState<PatientType | {}>({});
+  const [patient, setPatient] = useState<PatientType | unknown>({});
   const { auth } = useAuth();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export function PatientsProvider({ children }: ChildrenProps) {
     } else {
       try {
         const { data } = await axiosClient.post('/patients', patient, config);
-        const { createdAt, updatedAt, __v, ...storedPatient } = data;
+        const { ...storedPatient } = data;
         setPatients([storedPatient, ...patients]);
       } catch (error: any) {
         toast.error(error.response.data.msg);
