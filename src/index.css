@@ -1,10 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-3xl: 120rem;
+}
 
 body {
   font-family: Geist, Arial, Helvetica, sans-serif;
 }
 
-input[type="date"] {
+input[type='date'] {
   font-family: inherit;
   font-size: 14px;
   color: #868686;
