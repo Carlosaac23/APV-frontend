@@ -1,7 +1,7 @@
-import { useState, useEffect, createContext, ReactElement } from 'react';
+import { createContext, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import type { PatientType } from '@/types/patient';
 import axiosClient from '@/config/axios';
+import type { PatientType } from '@/types/patient';
 
 interface ChildrenProps {
   children: ReactElement;
@@ -10,10 +10,15 @@ interface ChildrenProps {
 interface PatientsContextProps {
   auth: {};
   patients: PatientType[];
-  savePatient: (patient: PatientType) => Promise<void>;
+  savePatient: (patient: PatientType) => Promise<string | number | void>;
   setEdition: (patient: PatientType) => void;
   patient: PatientType | {};
   deletePatient: (id: string) => Promise<void>;
+  setAuth: React.Dispatch<React.SetStateAction<{}>>;
+  loading: boolean;
+  logOut: () => void;
+  updateProfile: (userData: PatientType) => Promise<string | number | void>;
+  savePassword: (userData: PatientType) => Promise<string | number | void>;
 }
 
 const AuthContext = createContext<PatientsContextProps | null>(null);

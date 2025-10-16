@@ -1,13 +1,13 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
-import { useState } from 'react';
 import axiosClient from '@/config/axios';
 import useAuth from '@/hooks/useAuth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setAuth } = useAuth();
+  const { setAuth } = useAuth() as any;
 
   const navigate = useNavigate();
 

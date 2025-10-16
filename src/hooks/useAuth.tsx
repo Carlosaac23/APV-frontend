@@ -7,5 +7,12 @@ interface AuthState {
 }
 
 export default function useAuth(): AuthState {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth debe ser usado dentro de un AuthProvider');
+  }
+  return {
+    auth: context.auth,
+    loading: false,
+  };
 }

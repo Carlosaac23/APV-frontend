@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import useAuth from '@/hooks/useAuth';
 
 export default function Header() {
-  const { logOut } = useAuth();
+  const { logOut } = useAuth() as any;
 
   return (
     <header className='bg-sky-500 py-8'>

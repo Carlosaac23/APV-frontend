@@ -1,18 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { AuthProvider } from '@/context/AuthProvider';
 import { PatientsProvider } from '@/context/PatientsProvider';
-
-import AuthLayout from '@/layout/AuthLayout';
 import AdminLayout from '@/layout/AdminLayout';
-
-import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-import ForgotPassword from '@/pages/ForgotPassword';
-import VerifyAccount from '@/pages/VerifyAccount';
-import NewPassword from '@/pages/NewPassword';
+import AuthLayout from '@/layout/AuthLayout';
 import Admin from '@/pages/Admin';
-import EditProfile from '@/pages/EditProfile';
 import ChangePassword from '@/pages/ChangePassword';
+import EditProfile from '@/pages/EditProfile';
+import ForgotPassword from '@/pages/ForgotPassword';
+import Login from '@/pages/Login';
+import NewPassword from '@/pages/NewPassword';
+import Register from '@/pages/Register';
+import VerifyAccount from '@/pages/VerifyAccount';
 
 export default function App() {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { toast } from 'sonner';
 import axiosClient from '@/config/axios';
 

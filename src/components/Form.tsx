@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import usePatients from '@/hooks/usePatients';
 
@@ -10,7 +10,7 @@ export default function Form() {
   const [symptoms, setSymptoms] = useState('');
   const [id, setId] = useState<string | null>(null);
 
-  const { savePatient, patient } = usePatients();
+  const { savePatient, patient } = usePatients() as any;
 
   useEffect(() => {
     if (patient?.name) {

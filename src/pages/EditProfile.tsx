@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import AdminNav from '@/components/AdminNav';
 import useAuth from '@/hooks/useAuth';
@@ -11,9 +11,14 @@ interface ProfileContextProps {
 }
 
 export default function EditProfile() {
-  const { auth, updateProfile } = useAuth();
+  const { auth, updateProfile } = useAuth() as any;
 
-  const [profile, setProfile] = useState<ProfileContextProps>({});
+  const [profile, setProfile] = useState<ProfileContextProps>({
+    name: '',
+    email: '',
+    phone: '',
+    web: '',
+  });
 
   useEffect(() => {
     setProfile(auth);

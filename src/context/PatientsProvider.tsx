@@ -1,8 +1,8 @@
-import { useState, useEffect, createContext, ReactElement } from 'react';
+import { createContext, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import type { PatientType } from '@/types/patient';
 import axiosClient from '@/config/axios';
 import useAuth from '@/hooks/useAuth';
+import type { PatientType } from '@/types/patient';
 
 interface ChildrenProps {
   children: ReactElement;

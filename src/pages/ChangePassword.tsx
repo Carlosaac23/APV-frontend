@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import useAuth from '@/hooks/useAuth';
 import AdminNav from '@/components/AdminNav';
+import useAuth from '@/hooks/useAuth';
 
 export default function ChangePassword() {
-  const { savePassword } = useAuth();
+  const { savePassword } = useAuth() as any;
 
   const [password, setPassword] = useState({
     actual_password: '',

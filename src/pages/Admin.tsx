@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import Footer from '@/components/Footer';
 import Form from '@/components/Form';
 import PatientsList from '@/components/PatientsList';
-import Footer from '@/components/Footer';
 
 export default function Admin() {
   const [showForm, setShowForm] = useState(false);
