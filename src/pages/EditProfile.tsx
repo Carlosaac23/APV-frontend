@@ -61,14 +61,14 @@ export default function EditProfile() {
             </label>
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              placeholder='John Doe'
-              type='text'
-              name='name'
               id='name'
-              value={profile.name || ''}
+              name='name'
+              type='text'
               onChange={(e) =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
+              placeholder='John Doe'
+              value={profile.name || ''}
             />
           </div>
 
@@ -81,14 +81,14 @@ export default function EditProfile() {
             </label>
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              placeholder='johndoe@hotmail.com'
-              type='email'
-              name='email'
               id='email'
-              value={profile.email || ''}
+              name='email'
+              type='email'
               onChange={(e) =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
+              placeholder='johndoe@hotmail.com'
+              value={profile.email || ''}
             />
           </div>
 
@@ -101,14 +101,14 @@ export default function EditProfile() {
             </label>
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              placeholder='1645 18451687'
-              type='tel'
-              name='phone'
               id='phone'
-              value={profile.phone || ''}
+              name='phone'
+              type='tel'
               onChange={(e) =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
+              placeholder='1645 18451687'
+              value={profile.phone || ''}
             />
           </div>
 
@@ -121,21 +121,21 @@ export default function EditProfile() {
             </label>
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              placeholder='www.misitioweb.com'
-              type='text'
-              name='web'
               id='web'
-              value={profile.web || ''}
+              name='web'
+              type='text'
               onChange={(e) =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
+              placeholder='www.misitioweb.com'
+              value={profile.web || ''}
             />
           </div>
 
           <input
+            className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
             type='submit'
             value='Guardar Cambios'
-            className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
           />
         </form>
       </div>

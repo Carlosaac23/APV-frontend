@@ -61,18 +61,18 @@ export default function NewPassword() {
           <form onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor='new-password'
                 className='mb-1 block text-sm font-medium text-neutral-700'
+                htmlFor='new-password'
               >
                 Nueva contraseña
               </label>
               <input
-                id='new-password'
-                type='password'
                 className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-                placeholder='Nueva contraseña'
-                value={password}
+                id='new-password'
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder='Nueva contraseña'
+                type='password'
+                value={password}
               />
 
               <div className='mt-2 grid grid-cols-2 grid-rows-2 justify-between'>
@@ -92,9 +92,9 @@ export default function NewPassword() {
             </div>
 
             <input
+              className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
               type='submit'
               value='Guardar Contraseña'
-              className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
             />
           </form>
         )}
@@ -102,8 +102,8 @@ export default function NewPassword() {
         {newPassword && (
           <nav className='mt-4 text-center text-neutral-500'>
             <Link
-              to='/'
               className='text-sm hover:text-neutral-800 hover:underline hover:underline-offset-2'
+              to='/'
             >
               Iniciar Sesión
             </Link>
