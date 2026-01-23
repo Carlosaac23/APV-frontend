@@ -1,17 +1,13 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "unicorn",
-    "typescript",
-    "oxc"
-  ],
+  "plugins": ["unicorn", "typescript", "oxc"],
   "categories": {},
   "rules": {
     "constructor-super": "warn",
     "for-direction": "warn",
     "no-async-promise-executor": "warn",
     "no-caller": "warn",
-      "react/rules-of-hooks": "warn",
+    "react/rules-of-hooks": "warn",
     "no-undef": "warn",
     "no-class-assign": "warn",
     "no-compare-neg-zero": "warn",

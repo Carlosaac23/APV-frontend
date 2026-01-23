@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-   "printWidth": 80,
+  "printWidth": 80,
   "jsxSingleQuote": true,
   "singleQuote": true,
   "trailingComma": "es5",
