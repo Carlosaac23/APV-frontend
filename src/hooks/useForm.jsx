@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
-import usePatients from './usePatients';
+import { usePatients } from './usePatients';
 
 export function useForm() {
   const [name, setName] = useState('');
