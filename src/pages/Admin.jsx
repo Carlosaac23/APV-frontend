@@ -18,7 +18,7 @@ export default function Admin() {
           {showForm ? 'Ocultar Formulario' : 'Mostrar Formulario'}
         </button>
         <div
-          className={` ${showForm ? 'block' : 'hidden'} md:block md:w-1/2 lg:w-2/5`}
+          className={`${showForm ? 'block' : 'hidden'} md:block md:w-1/2 lg:w-2/5`}
         >
           <Form />
         </div>
