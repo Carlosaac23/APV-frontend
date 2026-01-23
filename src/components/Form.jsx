@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+
 import usePatients from '@/hooks/usePatients';
 
 export default function Form() {
@@ -8,9 +9,9 @@ export default function Form() {
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
-  const [id, setId] = useState<string | null>(null);
+  const [id, setId] = useState(null);
 
-  const { savePatient, patient } = usePatients() as any;
+  const { savePatient, patient } = usePatients();
 
   useEffect(() => {
     if (patient?.name) {
@@ -23,7 +24,7 @@ export default function Form() {
     }
   }, [patient]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = e => {
     e.preventDefault();
 
     if ([name, owner, email, date, symptoms].includes('')) {
@@ -45,7 +46,7 @@ export default function Form() {
     setDate('');
     setSymptoms('');
     setId('');
-  }
+  };
 
   return (
     <>
@@ -67,7 +68,7 @@ export default function Form() {
             placeholder='Nombre del paciente'
             className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
           />
         </div>
 
@@ -84,7 +85,7 @@ export default function Form() {
             placeholder='Nombre del propietario'
             className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
             value={owner}
-            onChange={(e) => setOwner(e.target.value)}
+            onChange={e => setOwner(e.target.value)}
           />
         </div>
 
@@ -101,7 +102,7 @@ export default function Form() {
             placeholder='johndoe@hotmail.com'
             className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 
@@ -117,7 +118,7 @@ export default function Form() {
             type='date'
             className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs focus:border-sky-500 focus:outline-none'
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={e => setDate(e.target.value)}
           />
         </div>
 
@@ -134,7 +135,7 @@ export default function Form() {
             className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
             rows={5}
             value={symptoms}
-            onChange={(e) => setSymptoms(e.target.value)}
+            onChange={e => setSymptoms(e.target.value)}
           ></textarea>
         </div>
 

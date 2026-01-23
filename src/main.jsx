@@ -1,12 +1,14 @@
+import './index.css';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Toaster } from 'sonner';
-import App from './App.js';
-import './index.css';
 
-createRoot(document.getElementById('root')!).render(
+import App from './App.jsx';
+
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Toaster duration={3000} richColors />
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
