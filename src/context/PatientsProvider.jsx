@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import axiosClient from '@/config/axios';
-import useAuth from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 
 const PatientsContext = createContext(null);
 

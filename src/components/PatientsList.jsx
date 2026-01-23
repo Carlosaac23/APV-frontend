@@ -1,9 +1,10 @@
-import usePatients from '@/hooks/usePatients';
+import { usePatients } from '@/hooks/usePatients';
 
 import Patient from './Patient';
 
 export default function PatientsList() {
   const { patients } = usePatients();
+
   return (
     <>
       {patients.length ? (

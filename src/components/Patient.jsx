@@ -1,5 +1,5 @@
 import formatDate from '@/helpers/formatDate';
-import usePatients from '@/hooks/usePatients';
+import { usePatients } from '@/hooks/usePatients';
 
 export default function Patient({ patient }) {
   const { setEdition, deletePatient } = usePatients();
