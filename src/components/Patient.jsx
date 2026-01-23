@@ -1,13 +1,8 @@
 import formatDate from '@/helpers/formatDate';
-import usePatients from '@/hooks/usePatients';
-import type { PatientType } from '@/types/patient';
+import { usePatients } from '@/hooks/usePatients';
 
-interface PatientProps {
-  patient: PatientType;
-}
-
-export default function Patient({ patient }: PatientProps) {
-  const { setEdition, deletePatient } = usePatients() as any;
+export default function Patient({ patient }) {
+  const { setEdition, deletePatient } = usePatients();
   const { name, owner, email, date, symptoms, _id } = patient;
 
   return (

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
+
 import { AuthProvider } from '@/context/AuthProvider';
 import { PatientsProvider } from '@/context/PatientsProvider';
 import AdminLayout from '@/layout/AdminLayout';

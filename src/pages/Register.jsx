@@ -1,36 +1,19 @@
-import { useState } from 'react';
 import { Link } from 'react-router';
-import { toast } from 'sonner';
-import axiosClient from '@/config/axios';
+
+import { useRegister } from '@/hooks/useRegister';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if ([name, email, password, confirmPassword].includes('')) {
-      return toast.warning('Hay campos vacíos');
-    }
-
-    if (password !== confirmPassword) {
-      return toast.error('Las contraseñas no coinciden.');
-    }
-
-    if (password.length < 6) {
-      return toast.warning('La contraseña es muy corta');
-    }
-
-    try {
-      await axiosClient.post('/veterinarians', { name, email, password });
-      toast.success('Cuenta creada exitosamente. Revisa tu correo.');
-    } catch (error: any) {
-      toast.error(error.response?.data?.msg || 'Error de servidor');
-    }
-  }
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    handleSubmit,
+  } = useRegister;
 
   return (
     <>
@@ -54,7 +37,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='name'
-              onChange={(e) => setName(e.target.value)}
+              onChange={e => setName(e.target.value)}
               placeholder='John Doe'
               type='text'
               value={name}
@@ -71,7 +54,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}
@@ -88,7 +71,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={password}
@@ -120,7 +103,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='confirm-password'
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={e => setConfirmPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={confirmPassword}

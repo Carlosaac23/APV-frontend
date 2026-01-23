@@ -1,36 +1,9 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
-import { toast } from 'sonner';
-import axiosClient from '@/config/axios';
-import useAuth from '@/hooks/useAuth';
+import { Link } from 'react-router';
+
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { setAuth } = useAuth() as any;
-
-  const navigate = useNavigate();
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if ([email, password].includes('')) {
-      return toast.error('Todos los campos son obligatorios');
-    }
-
-    try {
-      const { data } = await axiosClient.post('/veterinarians/login', {
-        email,
-        password,
-      });
-
-      localStorage.setItem('token', data.token);
-      setAuth(data);
-      navigate('/admin');
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
-    }
-  }
+  const { email, setEmail, password, setPassword, handleSubmit } = useLogin();
 
   return (
     <>
@@ -54,7 +27,7 @@ export default function Login() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}
@@ -71,7 +44,7 @@ export default function Login() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={password}

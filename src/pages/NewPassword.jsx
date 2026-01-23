@@ -1,52 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
-import { toast } from 'sonner';
-import axiosClient from '@/config/axios';
+import { Link } from 'react-router';
+
+import { useNewPassword } from '@/hooks/useNewPassword';
 
 export default function NewPassword() {
-  const [password, setPassword] = useState('');
-  const [validToken, setValidToken] = useState(false);
-  const [newPassword, setNewPassword] = useState(false);
-
-  const params = useParams();
-  const { token } = params;
-
-  useEffect(() => {
-    const verifyToken = async () => {
-      try {
-        await axiosClient(`/veterinarians/forgot-password/${token}`);
-        toast.success('Ingresa tu nueva contraseña.');
-        setValidToken(true);
-      } catch (error: any) {
-        toast.error(error.message);
-        toast.error('Hubo un error con el enlace.');
-      }
-    };
-
-    verifyToken();
-  }, [token]);
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (password === '') {
-      return toast.error('Debes agregar un contraseña.');
-    }
-
-    if (password.length < 6) {
-      return toast.warning('La contraseña debe tener mínimo 6 caracteres.');
-    }
-
-    try {
-      const url = `/veterinarians/forgot-password/${token}`;
-      const { data } = await axiosClient.post(url, { password });
-      toast.success(data.msg);
-      setNewPassword(true);
-    } catch (error: any) {
-      toast.error(error.message);
-      toast.error(error.response.data.msg);
-    }
-  }
+  const { password, setPassword, newPassword, validToken, handleSubmit } =
+    useNewPassword();
 
   return (
     <>
@@ -69,7 +27,7 @@ export default function NewPassword() {
               <input
                 className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
                 id='new-password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 placeholder='Nueva contraseña'
                 type='password'
                 value={password}

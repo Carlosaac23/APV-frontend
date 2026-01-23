@@ -1,30 +1,12 @@
-import { createContext, ReactElement, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
-import type { PatientType } from '@/types/patient';
 
-interface ChildrenProps {
-  children: ReactElement;
-}
+const AuthContext = createContext(null);
 
-interface PatientsContextProps {
-  auth: unknown;
-  patients: PatientType[];
-  savePatient: (patient: PatientType) => Promise<string | number | void>;
-  setEdition: (patient: PatientType) => void;
-  patient: PatientType | unknown;
-  deletePatient: (id: string) => Promise<void>;
-  setAuth: React.Dispatch<React.SetStateAction<unknown>>;
-  loading: boolean;
-  logOut: () => void;
-  updateProfile: (userData: PatientType) => Promise<string | number | void>;
-  savePassword: (userData: PatientType) => Promise<string | number | void>;
-}
-
-const AuthContext = createContext<PatientsContextProps | null>(null);
-
-export function AuthProvider({ children }: ChildrenProps) {
-  const [auth, setAuth] = useState<unknown>({});
+export function AuthProvider({ children }) {
+  const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -44,7 +26,7 @@ export function AuthProvider({ children }: ChildrenProps) {
       try {
         const { data } = await axiosClient('/veterinarians/profile', config);
         setAuth(data);
-      } catch (error: any) {
+      } catch (error) {
         toast.error(error.response?.data?.msg || 'Error de autenticación');
         setAuth({});
       }
@@ -60,7 +42,7 @@ export function AuthProvider({ children }: ChildrenProps) {
     setAuth({});
   }
 
-  async function updateProfile(userData: PatientType) {
+  async function updateProfile(userData) {
     const token = localStorage.getItem('token');
     if (!token) {
       return setLoading(false);
@@ -75,14 +57,14 @@ export function AuthProvider({ children }: ChildrenProps) {
 
     try {
       const url = `/veterinarians/profile/${userData._id}`;
-      const { data } = await axiosClient.put(url, userData, config);
+      const { _data } = await axiosClient.put(url, userData, config);
       return toast.success('Datos guardados exitosamente.');
-    } catch (error: any) {
+    } catch (error) {
       return toast.error(error.response.data.msg);
     }
   }
 
-  async function savePassword(userData: PatientType) {
+  async function savePassword(userData) {
     const token = localStorage.getItem('token');
     if (!token) {
       return setLoading(false);
@@ -99,7 +81,7 @@ export function AuthProvider({ children }: ChildrenProps) {
       const url = '/veterinarians/update-password';
       const { data } = await axiosClient.put(url, userData, config);
       return toast.success(data.msg);
-    } catch (error: any) {
+    } catch (error) {
       return toast.error(error.response.data.msg);
     }
   }

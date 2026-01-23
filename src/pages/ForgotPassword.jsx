@@ -1,32 +1,10 @@
-import type React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router';
-import { toast } from 'sonner';
-import axiosClient from '@/config/axios';
+
+import { useForgotPassword } from '@/hooks/useForgotPassword';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('');
+  const { email, setEmail, handleSubmit } = useForgotPassword();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (email === '' || email.length < 6) {
-      return toast.warning('El email es obligatorio.');
-    }
-
-    try {
-      const { data } = await axiosClient.post(
-        '/veterinarians/forgot-password',
-        {
-          email,
-        },
-      );
-
-      toast.success(data.msg);
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
-    }
-  }
   return (
     <>
       <div className='flex flex-col items-center'>
@@ -49,7 +27,7 @@ export default function ForgotPassword() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}
