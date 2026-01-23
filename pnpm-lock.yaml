@@ -14,12 +14,6 @@ importers:
       axios:
         specifier: ^1.12.2
         version: 1.13.2
-      oxfmt:
-        specifier: ^0.26.0
-        version: 0.26.0
-      oxlint:
-        specifier: ^1.41.0
-        version: 1.41.0
       react:
         specifier: ^19.1.1
         version: 19.2.3
@@ -51,6 +45,12 @@ importers:
       globals:
         specifier: ^16.4.0
         version: 16.5.0
+      oxfmt:
+        specifier: ^0.26.0
+        version: 0.26.0
+      oxlint:
+        specifier: ^1.41.0
+        version: 1.41.0
       vite:
         specifier: ^7.1.6
         version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(lightningcss@1.30.2)
