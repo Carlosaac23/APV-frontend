@@ -1,30 +1,8 @@
-import { useState } from 'react';
-import { toast } from 'sonner';
-
 import AdminNav from '@/components/AdminNav';
-import useAuth from '@/hooks/useAuth';
+import { usePassword } from '@/hooks/usePassword';
 
 export default function ChangePassword() {
-  const { savePassword } = useAuth();
-
-  const [password, setPassword] = useState({
-    actual_password: '',
-    new_password: '',
-  });
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (Object.values(password).some(input => input === '')) {
-      return toast.warning('Todos los campos son obligatorios.');
-    }
-
-    if (password.actual_password.length < 6) {
-      return toast.warning('La contraseña debe tener mínimo 6 caracteres.');
-    }
-
-    savePassword(password);
-  }
+  const { password, setPassword, handleSubmit } = usePassword();
 
   return (
     <>
