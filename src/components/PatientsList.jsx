@@ -1,16 +1,16 @@
 import usePatients from '@/hooks/usePatients';
-import type { PatientType } from '@/types/patient';
+
 import Patient from './Patient';
 
 export default function PatientsList() {
-  const { patients } = usePatients() as any;
+  const { patients } = usePatients();
   return (
     <>
       {patients.length ? (
         <>
           <h2 className='mt-4 text-center text-2xl font-bold'>Pacientes</h2>
 
-          {patients.map((patient: PatientType) => (
+          {patients.map(patient => (
             <Patient key={patient._id} patient={patient} />
           ))}
         </>

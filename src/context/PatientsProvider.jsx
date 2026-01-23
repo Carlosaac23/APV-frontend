@@ -1,26 +1,14 @@
-import { createContext, ReactElement, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 import useAuth from '@/hooks/useAuth';
-import type { PatientType } from '@/types/patient';
 
-interface ChildrenProps {
-  children: ReactElement;
-}
+const PatientsContext = createContext(null);
 
-interface PatientsContextProps {
-  patients: PatientType[];
-  savePatient: (patient: PatientType) => Promise<void>;
-  setEdition: (patient: PatientType) => void;
-  patient: PatientType | unknown;
-  deletePatient: (id: string) => Promise<void>;
-}
-
-const PatientsContext = createContext<PatientsContextProps | null>(null);
-
-export function PatientsProvider({ children }: ChildrenProps) {
-  const [patients, setPatients] = useState<PatientType[]>([]);
-  const [patient, setPatient] = useState<PatientType | unknown>({});
+export function PatientsProvider({ children }) {
+  const [patients, setPatients] = useState([]);
+  const [patient, setPatient] = useState({});
   const { auth } = useAuth();
 
   useEffect(() => {
@@ -46,7 +34,7 @@ export function PatientsProvider({ children }: ChildrenProps) {
     getPatients();
   }, [auth]);
 
-  async function savePatient(patient: PatientType) {
+  async function savePatient(patient) {
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -60,11 +48,11 @@ export function PatientsProvider({ children }: ChildrenProps) {
         const { data } = await axiosClient.put(
           `/patients/${patient.id}`,
           patient,
-          config,
+          config
         );
 
-        const updatedPatients = patients.map((statePatient) =>
-          statePatient._id === data._id ? data : statePatient,
+        const updatedPatients = patients.map(statePatient =>
+          statePatient._id === data._id ? data : statePatient
         );
         setPatients(updatedPatients);
         toast.success('Paciente actualizado correctamente');
@@ -76,17 +64,17 @@ export function PatientsProvider({ children }: ChildrenProps) {
         const { data } = await axiosClient.post('/patients', patient, config);
         const { ...storedPatient } = data;
         setPatients([storedPatient, ...patients]);
-      } catch (error: any) {
+      } catch (error) {
         toast.error(error.response.data.msg);
       }
     }
   }
 
-  function setEdition(patient: PatientType) {
+  function setEdition(patient) {
     setPatient(patient);
   }
 
-  async function deletePatient(id: string) {
+  async function deletePatient(id) {
     const confirmMsg = confirm('¿Seguro que quieres eliminar este paciente?');
     if (confirmMsg) {
       try {
@@ -100,7 +88,7 @@ export function PatientsProvider({ children }: ChildrenProps) {
 
         const { data } = await axiosClient.delete(`/patients/${id}`, config);
         const updatedPatients = patients.filter(
-          (statePatients) => statePatients._id !== id,
+          statePatients => statePatients._id !== id
         );
         setPatients(updatedPatients);
         toast.info('Paciente eliminado');
