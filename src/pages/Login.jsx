@@ -1,37 +1,9 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
-import { toast } from 'sonner';
+import { Link } from 'react-router';
 
-import axiosClient from '@/config/axios';
-import useAuth from '@/hooks/useAuth';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { setAuth } = useAuth();
-
-  const navigate = useNavigate();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if ([email, password].includes('')) {
-      return toast.error('Todos los campos son obligatorios');
-    }
-
-    try {
-      const { data } = await axiosClient.post('/veterinarians/login', {
-        email,
-        password,
-      });
-
-      localStorage.setItem('token', data.token);
-      setAuth(data);
-      navigate('/admin');
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
-  }
+  const { email, setEmail, password, setPassword, handleSubmit } = useLogin();
 
   return (
     <>
