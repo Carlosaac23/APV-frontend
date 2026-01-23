@@ -86,7 +86,7 @@ export function PatientsProvider({ children }) {
           },
         };
 
-        const { data } = await axiosClient.delete(`/patients/${id}`, config);
+        const { _data } = await axiosClient.delete(`/patients/${id}`, config);
         const updatedPatients = patients.filter(
           statePatients => statePatients._id !== id
         );

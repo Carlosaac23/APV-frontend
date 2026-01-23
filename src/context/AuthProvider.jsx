@@ -57,7 +57,7 @@ export function AuthProvider({ children }) {
 
     try {
       const url = `/veterinarians/profile/${userData._id}`;
-      const { data } = await axiosClient.put(url, userData, config);
+      const { _data } = await axiosClient.put(url, userData, config);
       return toast.success('Datos guardados exitosamente.');
     } catch (error) {
       return toast.error(error.response.data.msg);
