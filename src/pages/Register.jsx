@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 
 export default function Register() {
@@ -9,7 +10,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if ([name, email, password, confirmPassword].includes('')) {
@@ -27,7 +28,7 @@ export default function Register() {
     try {
       await axiosClient.post('/veterinarians', { name, email, password });
       toast.success('Cuenta creada exitosamente. Revisa tu correo.');
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.response?.data?.msg || 'Error de servidor');
     }
   }
@@ -54,7 +55,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='name'
-              onChange={(e) => setName(e.target.value)}
+              onChange={e => setName(e.target.value)}
               placeholder='John Doe'
               type='text'
               value={name}
@@ -71,7 +72,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}
@@ -88,7 +89,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={password}
@@ -120,7 +121,7 @@ export default function Register() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='confirm-password'
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={e => setConfirmPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={confirmPassword}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 
 export default function NewPassword() {
@@ -17,7 +18,7 @@ export default function NewPassword() {
         await axiosClient(`/veterinarians/forgot-password/${token}`);
         toast.success('Ingresa tu nueva contraseña.');
         setValidToken(true);
-      } catch (error: any) {
+      } catch (error) {
         toast.error(error.message);
         toast.error('Hubo un error con el enlace.');
       }
@@ -26,7 +27,7 @@ export default function NewPassword() {
     verifyToken();
   }, [token]);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (password === '') {
@@ -42,7 +43,7 @@ export default function NewPassword() {
       const { data } = await axiosClient.post(url, { password });
       toast.success(data.msg);
       setNewPassword(true);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.message);
       toast.error(error.response.data.msg);
     }
@@ -69,7 +70,7 @@ export default function NewPassword() {
               <input
                 className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
                 id='new-password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 placeholder='Nueva contraseña'
                 type='password'
                 value={password}

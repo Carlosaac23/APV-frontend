@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+
 import AdminNav from '@/components/AdminNav';
 import useAuth from '@/hooks/useAuth';
 
-interface ProfileContextProps {
-  name: string;
-  email: string;
-  phone: string;
-  web: string;
-}
-
 export default function EditProfile() {
-  const { auth, updateProfile } = useAuth() as any;
+  const { auth, updateProfile } = useAuth();
 
-  const [profile, setProfile] = useState<ProfileContextProps>({
+  const [profile, setProfile] = useState({
     name: '',
     email: '',
     phone: '',
@@ -24,10 +18,10 @@ export default function EditProfile() {
     setProfile(auth);
   }, [auth]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, phone, web } = profile;
+    const { name, email, _phone, _web } = profile;
 
     if ([name, email].includes('')) {
       return toast.warning('El nombre y correo son obligatorios.');
@@ -64,7 +58,7 @@ export default function EditProfile() {
               id='name'
               name='name'
               type='text'
-              onChange={(e) =>
+              onChange={e =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
               placeholder='John Doe'
@@ -84,7 +78,7 @@ export default function EditProfile() {
               id='email'
               name='email'
               type='email'
-              onChange={(e) =>
+              onChange={e =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
               placeholder='johndoe@hotmail.com'
@@ -104,7 +98,7 @@ export default function EditProfile() {
               id='phone'
               name='phone'
               type='tel'
-              onChange={(e) =>
+              onChange={e =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
               placeholder='1645 18451687'
@@ -124,7 +118,7 @@ export default function EditProfile() {
               id='web'
               name='web'
               type='text'
-              onChange={(e) =>
+              onChange={e =>
                 setProfile({ ...profile, [e.target.name]: e.target.value })
               }
               placeholder='www.misitioweb.com'

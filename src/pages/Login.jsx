@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 import useAuth from '@/hooks/useAuth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setAuth } = useAuth() as any;
+  const { setAuth } = useAuth();
 
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if ([email, password].includes('')) {
@@ -27,7 +28,7 @@ export default function Login() {
       localStorage.setItem('token', data.token);
       setAuth(data);
       navigate('/admin');
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.response.data.msg);
     }
   }
@@ -54,7 +55,7 @@ export default function Login() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}
@@ -71,7 +72,7 @@ export default function Login() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder='password123'
               type='password'
               value={password}

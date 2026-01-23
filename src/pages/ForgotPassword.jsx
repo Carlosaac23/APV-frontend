@@ -1,13 +1,13 @@
-import type React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (email === '' || email.length < 6) {
@@ -19,11 +19,11 @@ export default function ForgotPassword() {
         '/veterinarians/forgot-password',
         {
           email,
-        },
+        }
       );
 
       toast.success(data.msg);
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.response.data.msg);
     }
   }
@@ -49,7 +49,7 @@ export default function ForgotPassword() {
             <input
               className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
               id='email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='johndoe@hotmail.com'
               type='email'
               value={email}

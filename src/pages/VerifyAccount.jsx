@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { toast } from 'sonner';
+
 import axiosClient from '@/config/axios';
 
 export default function VerifyAccount() {
@@ -19,7 +20,7 @@ export default function VerifyAccount() {
 
         toast.success(data.msg);
         setAccountConfirmed(true);
-      } catch (error: any) {
+      } catch (error) {
         toast.error(error.response?.data?.msg || 'Error de autenticación');
       }
 

@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+
 import AdminNav from '@/components/AdminNav';
 import useAuth from '@/hooks/useAuth';
 
 export default function ChangePassword() {
-  const { savePassword } = useAuth() as any;
+  const { savePassword } = useAuth();
 
   const [password, setPassword] = useState({
     actual_password: '',
     new_password: '',
   });
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    if (Object.values(password).some((input) => input === '')) {
+    if (Object.values(password).some(input => input === '')) {
       return toast.warning('Todos los campos son obligatorios.');
     }
 
@@ -48,7 +49,7 @@ export default function ChangePassword() {
               type='password'
               name='actual_password'
               id='actual_password'
-              onChange={(e) =>
+              onChange={e =>
                 setPassword({
                   ...password,
                   [e.target.name]: e.target.value,
@@ -70,7 +71,7 @@ export default function ChangePassword() {
               type='password'
               name='new_password'
               id='new_password'
-              onChange={(e) =>
+              onChange={e =>
                 setPassword({
                   ...password,
                   [e.target.name]: e.target.value,
