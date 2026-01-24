@@ -13,7 +13,7 @@ export default function Register() {
     confirmPassword,
     setConfirmPassword,
     handleSubmit,
-  } = useRegister;
+  } = useRegister();
 
   return (
     <>
