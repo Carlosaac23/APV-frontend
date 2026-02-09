@@ -17,7 +17,7 @@
     ]
   },
   "experimentalTailwindcss": {
-    "stylesheet": "./app/globals.css",
+    "stylesheet": "./src/index.css",
     "attributes": ["class", "className"],
     "functions": ["clsx", "cn"],
     "preserveDuplicates": false,
