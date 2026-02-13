@@ -12,6 +12,7 @@ export default function Register() {
     handlePasswordChange,
     confirmPassword,
     handleConfirmPasswordChange,
+    handleSubmit,
   } = useRegister();
 
   return (
@@ -23,7 +24,7 @@ export default function Register() {
         </h1>
       </div>
       <div className='mt-20 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:mt-5'>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='my-5'>
             <label
               className='mb-3 block text-xl font-bold text-sky-800 uppercase'
@@ -32,14 +33,13 @@ export default function Register() {
               Name
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='text'
               name='name'
               id='name'
               placeholder='Enter your name'
               value={name}
               onChange={handleNameChange}
-              required
             />
           </div>
           <div className='my-5'>
@@ -50,14 +50,13 @@ export default function Register() {
               Email
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='email'
               name='email'
               id='email'
               placeholder='Enter your email'
               value={email}
               onChange={handleEmailChange}
-              required
             />
           </div>
           <div className='my-5'>
@@ -68,14 +67,13 @@ export default function Register() {
               Password
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
               name='password'
               id='password'
               placeholder='Enter your password'
               value={password}
               onChange={handlePasswordChange}
-              required
             />
           </div>
           <div className='my-5'>
@@ -86,18 +84,17 @@ export default function Register() {
               Confirm password
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
               name='confirm-password'
               id='confirm-password'
               placeholder='Enter your password'
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              required
             />
           </div>
           <button
-            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm hover:cursor-pointer md:w-auto'
+            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
             type='submit'
           >
             Sign up
