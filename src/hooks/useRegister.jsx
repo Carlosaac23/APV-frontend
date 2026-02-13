@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 export function useRegister() {
   const [name, setName] = useState('');
@@ -22,6 +23,29 @@ export function useRegister() {
     setConfirmPassword(e.target.value);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if ([name, email, password, confirmPassword].includes('')) {
+      toast.error('All fields are required.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error('The passwords do not match.');
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.message(
+        'The password is very short. It must be longer than 6 characters.'
+      );
+      return;
+    }
+
+    toast.success('Account created successfully.');
+  };
+
   return {
     name,
     handleNameChange,
@@ -31,5 +55,6 @@ export function useRegister() {
     handlePasswordChange,
     confirmPassword,
     handleConfirmPasswordChange,
+    handleSubmit,
   };
 }
