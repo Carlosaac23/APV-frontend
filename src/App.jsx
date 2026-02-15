@@ -12,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<AuthLayout />}>
           <Route index element={<Login />} />
-          <Route path='confirm/:id' element={<ConfirmAccount />} />
+          <Route path='confirm/:token' element={<ConfirmAccount />} />
           <Route path='forgot-password' element={<ForgotPassword />} />
           <Route path='register' element={<Register />} />
         </Route>
