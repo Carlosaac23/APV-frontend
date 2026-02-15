@@ -18,7 +18,7 @@ export default function Login() {
               Email
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='email'
               name='email'
               id='email'
@@ -33,7 +33,7 @@ export default function Login() {
               Password
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
               name='password'
               id='password'

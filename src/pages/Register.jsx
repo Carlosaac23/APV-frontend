@@ -33,7 +33,7 @@ export default function Register() {
               Name
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='text'
               name='name'
               id='name'
@@ -50,7 +50,7 @@ export default function Register() {
               Email
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='email'
               name='email'
               id='email'
@@ -67,7 +67,7 @@ export default function Register() {
               Password
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
               name='password'
               id='password'
@@ -84,7 +84,7 @@ export default function Register() {
               Confirm password
             </label>
             <input
-              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
               name='confirm-password'
               id='confirm-password'
@@ -94,7 +94,7 @@ export default function Register() {
             />
           </div>
           <button
-            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
+            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-xs transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
             type='submit'
           >
             Sign up
