@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -23,7 +24,7 @@ export function useRegister() {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if ([name, email, password, confirmPassword].includes('')) {
@@ -37,13 +38,29 @@ export function useRegister() {
     }
 
     if (password.length < 6) {
-      toast.message(
+      toast.error(
         'The password is very short. It must be longer than 6 characters.'
       );
       return;
     }
 
-    toast.success('Account created successfully.');
+    try {
+      const URL = 'http://localhost:4000/api/veterinarians';
+      await axios.post(URL, {
+        name,
+        email,
+        password,
+      });
+
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+      toast.success('Account created successfully.');
+    } catch (error) {
+      toast.error(error.response.data.msg);
+    }
   };
 
   return {
