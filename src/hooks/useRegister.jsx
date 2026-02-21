@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { axiosClient } from '../config/axios';
+import { axiosClient } from '@/config/axios';
 
 export function useRegister() {
   const [name, setName] = useState('');
@@ -59,7 +59,7 @@ export function useRegister() {
 
       toast.success('Account created successfully.');
     } catch (error) {
-      toast.error(error.response.data.msg);
+      toast.error(error?.response?.data?.msg || 'Unexpected error');
     }
   };
 
