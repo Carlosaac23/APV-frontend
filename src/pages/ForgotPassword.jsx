@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useRecover } from '../hooks/useRecover';
+import { useRecover } from '@/hooks/useRecover';
 
 export default function ForgotPassword() {
   const { email, handleEmailChange, handleSubmit } = useRecover();

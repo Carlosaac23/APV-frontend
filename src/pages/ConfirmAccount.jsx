@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useConfirm } from '../hooks/useConfirm';
+import { useConfirm } from '@/hooks/useConfirm';
 
 export default function ConfirmAccount() {
   const { accountConfirmed } = useConfirm();
