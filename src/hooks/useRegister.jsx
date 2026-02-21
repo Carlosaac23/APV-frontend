@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import axiosClient from '@/config/axios';
+import { axiosClient } from '../config/axios';
 
 export function useRegister() {
   const [name, setName] = useState('');
@@ -9,38 +9,69 @@ export function useRegister() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = e => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
 
     if ([name, email, password, confirmPassword].includes('')) {
-      return toast.warning('Hay campos vacíos');
+      toast.error('All fields are required.');
+      return;
     }
 
     if (password !== confirmPassword) {
-      return toast.error('Las contraseñas no coinciden.');
+      toast.error('The passwords do not match.');
+      return;
     }
 
     if (password.length < 6) {
-      return toast.warning('La contraseña es muy corta');
+      toast.error(
+        'The password is very short. It must be longer than 6 characters.'
+      );
+      return;
     }
 
     try {
-      await axiosClient.post('/veterinarians', { name, email, password });
-      toast.success('Cuenta creada exitosamente. Revisa tu correo.');
+      await axiosClient.post('/veterinarians', {
+        name,
+        email,
+        password,
+      });
+
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+      toast.success('Account created successfully.');
     } catch (error) {
-      toast.error(error.response?.data?.msg || 'Error de servidor');
+      toast.error(error.response.data.msg);
     }
   };
 
   return {
     name,
-    setName,
+    handleNameChange,
     email,
-    setEmail,
+    handleEmailChange,
     password,
-    setPassword,
+    handlePasswordChange,
     confirmPassword,
-    setConfirmPassword,
+    handleConfirmPasswordChange,
     handleSubmit,
   };
 }

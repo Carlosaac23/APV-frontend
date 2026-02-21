@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import axiosClient from '@/config/axios';
+import { axiosClient } from '../config/axios';
 
-export function useForgotPassword() {
+export function useRecover() {
   const [email, setEmail] = useState('');
+
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (email === '' || email.length < 6) {
-      return toast.warning('El email es obligatorio.');
+    if (email === '') {
+      toast.error('You must enter a valid email.');
+      return;
     }
 
     try {
       const { data } = await axiosClient.post(
         '/veterinarians/forgot-password',
-        {
-          email,
-        }
+        { email }
       );
+
+      setEmail('');
 
       toast.success(data.msg);
     } catch (error) {
@@ -27,5 +32,5 @@ export function useForgotPassword() {
     }
   };
 
-  return { email, setEmail, handleSubmit };
+  return { email, handleEmailChange, handleSubmit };
 }

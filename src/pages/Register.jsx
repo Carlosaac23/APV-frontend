@@ -1,134 +1,118 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { useRegister } from '@/hooks/useRegister';
 
 export default function Register() {
   const {
     name,
-    setName,
+    handleNameChange,
     email,
-    setEmail,
+    handleEmailChange,
     password,
-    setPassword,
+    handlePasswordChange,
     confirmPassword,
-    setConfirmPassword,
+    handleConfirmPasswordChange,
     handleSubmit,
   } = useRegister();
 
   return (
     <>
-      <div className='flex flex-col items-center'>
-        <h2 className='my-6 text-center text-4xl font-black text-balance text-sky-500'>
-          Crea Tu Cuenta
-        </h2>
-
-        <img alt='Vet logo' className='hidden w-40 md:block' src='/vet.svg' />
+      <div>
+        <h1 className='text-6xl font-black text-sky-400 capitalize'>
+          Create your account and manage{' '}
+          <span className='text-sky-950'>your patients</span>
+        </h1>
       </div>
-
-      <div className='mx-auto mt-10 max-w-[85%] rounded-md border border-neutral-300 p-4 shadow-sm md:mx-0 md:max-w-[85%]'>
+      <div className='mt-20 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:mt-5'>
         <form onSubmit={handleSubmit}>
-          <div className='mb-4'>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='name'
             >
-              Nombre
+              Name
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='name'
-              onChange={e => setName(e.target.value)}
-              placeholder='John Doe'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='text'
+              name='name'
+              id='name'
+              placeholder='Enter your name'
               value={name}
+              onChange={handleNameChange}
             />
           </div>
-
-          <div className='mb-4'>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='email'
             >
-              Correo Eléctronico
+              Email
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='email'
-              onChange={e => setEmail(e.target.value)}
-              placeholder='johndoe@hotmail.com'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='email'
+              name='email'
+              id='email'
+              placeholder='Enter your email'
               value={email}
+              onChange={handleEmailChange}
             />
           </div>
-
-          <div className='mb-4'>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='password'
             >
-              Contraseña
+              Password
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='password'
-              onChange={e => setPassword(e.target.value)}
-              placeholder='password123'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
+              name='password'
+              id='password'
+              placeholder='Enter your password'
               value={password}
+              onChange={handlePasswordChange}
             />
-
-            <div className='mt-2 grid grid-cols-2 grid-rows-2 justify-between'>
-              <span className='text-xs text-neutral-500'>
-                6 carácteres mínimo
-              </span>
-              <span className='text-xs text-neutral-500'>
-                Usa mayúsculas (A-Z)
-              </span>
-              <span className='text-xs text-neutral-500'>
-                Usa números (1-9)
-              </span>
-              <span className='text-xs text-neutral-500'>
-                Usa caracteres especiales
-              </span>
-            </div>
           </div>
-
-          <div className='mb-4'>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='confirm-password'
             >
-              Confirmar Contraseña
+              Confirm password
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='confirm-password'
-              onChange={e => setConfirmPassword(e.target.value)}
-              placeholder='password123'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
+              name='confirm-password'
+              id='confirm-password'
+              placeholder='Enter your password'
               value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
             />
           </div>
-
-          <input
-            className='mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
+          <button
+            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-xs transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
             type='submit'
-            value='Crear Cuenta'
-          />
+          >
+            Sign up
+          </button>
         </form>
 
-        <nav className='mt-4 text-center text-neutral-500'>
+        <nav className='mt-10 lg:flex lg:justify-between'>
           <Link
-            className='block text-sm hover:text-neutral-800 hover:underline hover:underline-offset-2'
+            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
             to='/'
           >
-            ¿Ya tienes una cuenta? Inicia Sesión
+            Already have an account? Sign up
           </Link>
           <Link
-            className='text-sm hover:text-neutral-800 hover:underline hover:underline-offset-2'
+            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
             to='/forgot-password'
           >
-            Olvidé mi contraseña
+            I forgot my password
           </Link>
         </nav>
       </div>

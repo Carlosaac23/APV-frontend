@@ -1,75 +1,65 @@
-import { Link } from 'react-router';
-
-import { useLogin } from '@/hooks/useLogin';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
-  const { email, setEmail, password, setPassword, handleSubmit } = useLogin();
-
   return (
     <>
-      <div className='flex flex-col items-center'>
-        <h2 className='my-6 text-center text-4xl font-black text-balance text-sky-500'>
-          Inicia Sesión
-        </h2>
-
-        <img alt='Vet logo' className='hidden w-40 md:block' src='/vet.svg' />
+      <div>
+        <h1 className='text-6xl font-black text-sky-400 capitalize'>
+          Log-in and manage your <span className='text-sky-950'>patients</span>
+        </h1>
       </div>
-
-      <div className='mx-auto mt-10 max-w-[85%] rounded-md border border-neutral-300 p-4 shadow-sm md:mx-0 md:max-w-[85%]'>
-        <form onSubmit={handleSubmit}>
-          <div className='mb-4'>
+      <div className='mt-20 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:mt-5'>
+        <form onSubmit={e => e.preventDefault()}>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='email'
             >
-              Correo Eléctronico
+              Email
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='email'
-              onChange={e => setEmail(e.target.value)}
-              placeholder='johndoe@hotmail.com'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='email'
-              value={email}
+              name='email'
+              id='email'
+              placeholder='Enter your email'
             />
           </div>
-
-          <div className='mb-4'>
+          <div className='my-5'>
             <label
-              className='mb-1 block text-sm font-medium text-neutral-700'
+              className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='password'
             >
-              Contraseña
+              Password
             </label>
             <input
-              className='w-full rounded-md border border-neutral-300 bg-neutral-100 p-1 pl-2 inset-shadow-xs placeholder:text-sm focus:border-sky-500 focus:outline-none'
-              id='password'
-              onChange={e => setPassword(e.target.value)}
-              placeholder='password123'
+              className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
               type='password'
-              value={password}
+              name='password'
+              id='password'
+              placeholder='Enter your password'
             />
           </div>
-
-          <input
-            className='shadwow-sm mt-4 w-full rounded-md bg-sky-500 py-2 text-neutral-50 transition-transform duration-150 ease-out hover:cursor-pointer hover:bg-sky-600 active:scale-97'
+          <button
+            className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
             type='submit'
-            value='Iniciar Sesión'
-          />
+          >
+            Log in
+          </button>
         </form>
 
-        <nav className='mt-4 text-center text-neutral-500'>
+        <nav className='mt-10 lg:flex lg:justify-between'>
           <Link
-            className='block text-sm hover:text-neutral-800 hover:underline hover:underline-offset-2'
+            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
             to='/register'
           >
-            ¿No tienes cuenta? Regístrate
+            Don't have an account? Register
           </Link>
           <Link
-            className='text-sm hover:text-neutral-800 hover:underline hover:underline-offset-2'
+            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
             to='/forgot-password'
           >
-            Olvidé mi contraseña
+            I forgot my password
           </Link>
         </nav>
       </div>
