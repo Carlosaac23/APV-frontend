@@ -1,19 +1,19 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
+import { axiosClient } from '../config/axios';
+
 export function useConfirm() {
   const [accountConfirmed, setAccountConfirmed] = useState(false);
 
-  const params = useParams();
-  const { token } = params;
+  const { token } = useParams();
 
   useEffect(() => {
     async function confirmAccount() {
       try {
-        const URL = `http://localhost:4000/api/veterinarians/confirm/${token}`;
-        const { data } = await axios(URL);
+        const URL = `/veterinarians/confirm/${token}`;
+        const { data } = await axiosClient(URL);
 
         toast.success(data.msg);
         setAccountConfirmed(true);

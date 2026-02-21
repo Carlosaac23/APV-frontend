@@ -1,6 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
+
+import { axiosClient } from '../config/axios';
 
 export function useRegister() {
   const [name, setName] = useState('');
@@ -45,8 +46,7 @@ export function useRegister() {
     }
 
     try {
-      const URL = 'http://localhost:4000/api/veterinarians';
-      await axios.post(URL, {
+      await axiosClient.post('/veterinarians', {
         name,
         email,
         password,
