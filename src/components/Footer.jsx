@@ -6,6 +6,7 @@ export default function Footer() {
           className='hover:underline hover:underline-offset-2'
           href='https://github.com/Carlosaac23'
           target='_blank'
+          rel='noopener noreferrer'
         >
           Carlos Acosta
         </a>{' '}
