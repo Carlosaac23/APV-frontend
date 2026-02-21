@@ -15,8 +15,8 @@ export function useConfirm() {
         const URL = `/veterinarians/confirm/${token}`;
         const { data } = await axiosClient(URL);
 
-        toast.success(data.msg);
         setAccountConfirmed(true);
+        toast.success(data?.msg);
       } catch (error) {
         toast.error(error?.response?.data?.msg || 'Unexpected error');
       }

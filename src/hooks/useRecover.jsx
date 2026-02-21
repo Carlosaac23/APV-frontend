@@ -26,7 +26,7 @@ export function useRecover() {
 
       setEmail('');
 
-      toast.success(data.msg);
+      toast.success(data?.msg);
     } catch (error) {
       toast.error(error?.response?.data?.msg || 'Unexpected error');
     }

@@ -46,7 +46,7 @@ export function useRegister() {
     }
 
     try {
-      await axiosClient.post('/veterinarians', {
+      const { data } = await axiosClient.post('/veterinarians', {
         name,
         email,
         password,
@@ -57,7 +57,7 @@ export function useRegister() {
       setPassword('');
       setConfirmPassword('');
 
-      toast.success('Account created successfully.');
+      toast.success(data?.msg);
     } catch (error) {
       toast.error(error?.response?.data?.msg || 'Unexpected error');
     }
