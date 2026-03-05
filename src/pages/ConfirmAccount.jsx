@@ -6,7 +6,7 @@ export default function ConfirmAccount() {
   const { accountConfirmed } = useConfirm();
 
   return (
-    <>
+    <section>
       <div>
         <h1 className='text-6xl font-black text-sky-400 capitalize'>
           Confirm your <span className='text-sky-950'>account</span>
@@ -38,6 +38,6 @@ export default function ConfirmAccount() {
           )}
         </nav>
       </div>
-    </>
+    </section>
   );
 }

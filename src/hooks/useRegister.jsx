@@ -49,7 +49,7 @@ export function useRegister() {
       const { data } = await axiosClient.post('/veterinarians', {
         name,
         email,
-        password,
+        password
       });
 
       setName('');
@@ -72,6 +72,6 @@ export function useRegister() {
     handlePasswordChange,
     confirmPassword,
     handleConfirmPasswordChange,
-    handleSubmit,
+    handleSubmit
   };
 }

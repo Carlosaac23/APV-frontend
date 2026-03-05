@@ -6,7 +6,7 @@ export default function ForgotPassword() {
   const { email, handleEmailChange, handleSubmit } = useRecover();
 
   return (
-    <>
+    <section>
       <div>
         <h1 className='text-6xl font-black text-sky-400 capitalize'>
           Recover your <span className='text-sky-950'>password</span>
@@ -54,6 +54,6 @@ export default function ForgotPassword() {
           </Link>
         </nav>
       </div>
-    </>
+    </section>
   );
 }
