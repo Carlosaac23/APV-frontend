@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className='flex items-center justify-between bg-sky-500 px-10 py-4 text-white'>
       <Link to='/'>
-        <h1>APV</h1>
+        <h1 className='logo'>APV</h1>
       </Link>
 
       <nav className='flex items-center gap-6'>
