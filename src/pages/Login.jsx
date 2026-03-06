@@ -1,45 +1,12 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 
-import { axiosClient } from '@/config/axios';
-import { useAuth } from '@/hooks/useAuth';
+import { useLogin } from '@/hooks/useLogin';
 import { useVisibility } from '@/hooks/useVisibility';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const { toggleVisibility, changeVisibility } = useVisibility();
-  const navigate = useNavigate();
-  const { authUser, setLoading } = useAuth();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (email === '') {
-      toast.error('Email is required');
-      return;
-    }
-    if (password === '') {
-      toast.error('Password is required');
-      return;
-    }
-
-    try {
-      const { data } = await axiosClient.post('/veterinarians/login', {
-        email,
-        password
-      });
-      localStorage.setItem('apv_token', data.token);
-      setLoading(true);
-      await authUser();
-      navigate('/admin');
-    } catch (error) {
-      toast.error(error?.response?.data?.msg);
-      setLoading(false);
-    }
-  }
+  const { email, setEmail, password, setPassword, handleSubmit } = useLogin();
 
   return (
     <section className='mt-10'>
