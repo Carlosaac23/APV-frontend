@@ -1,20 +1,55 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
+import { axiosClient } from '@/config/axios';
+import { useAuth } from '@/hooks/useAuth';
 import { useVisibility } from '@/hooks/useVisibility';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { toggleVisibility, changeVisibility } = useVisibility();
+  const navigate = useNavigate();
+  const { authUser, setLoading } = useAuth();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (email === '') {
+      toast.error('Email is required');
+      return;
+    }
+    if (password === '') {
+      toast.error('Password is required');
+      return;
+    }
+
+    try {
+      const { data } = await axiosClient.post('/veterinarians/login', {
+        email,
+        password
+      });
+      localStorage.setItem('apv_token', data.token);
+      setLoading(true);
+      await authUser();
+      navigate('/admin');
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      setLoading(false);
+    }
+  }
 
   return (
-    <section>
+    <section className='mt-10'>
       <div>
-        <h1 className='text-6xl font-black text-sky-400 capitalize'>
+        <h1 className='mx-6 text-center text-3xl font-black text-sky-400 capitalize md:text-5xl lg:text-6xl'>
           Log-in and manage your <span className='text-sky-950'>patients</span>
         </h1>
       </div>
-      <div className='mt-20 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:mt-5'>
-        <form onSubmit={e => e.preventDefault()}>
+      <div className='mx-auto mt-10 max-w-150 rounded-xl border border-gray-200 bg-white p-6 shadow-sm max-sm:mx-6 lg:mt-15'>
+        <form onSubmit={handleSubmit}>
           <div className='my-5'>
             <label
               className='mb-3 block text-xl font-bold text-sky-800 uppercase'
@@ -28,6 +63,8 @@ export default function Login() {
               name='email'
               id='email'
               placeholder='Enter your email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div className='relative my-5'>
@@ -43,6 +80,8 @@ export default function Login() {
               name='password'
               id='password'
               placeholder='Enter your password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <div className='absolute top-1/2 right-3 cursor-pointer rounded-full p-2 hover:bg-neutral-200'>
               {toggleVisibility === 'password' ? (
