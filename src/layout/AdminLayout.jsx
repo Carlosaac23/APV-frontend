@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from 'react-router-dom';
 
 import { Spinner } from '@/components/ui/spinner';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/context/AuthProvider';
 
 export default function AdminLayout() {
   const { auth, loading } = useAuth();

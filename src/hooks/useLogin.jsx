@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/context/AuthProvider';
 
 export function useLogin() {
   const [email, setEmail] = useState('');
@@ -28,6 +28,7 @@ export function useLogin() {
         email,
         password
       });
+
       localStorage.setItem('apv_token', data.token);
       setLoading(true);
       await authUser();
