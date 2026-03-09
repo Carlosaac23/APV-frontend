@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext, useEffect, useContext } from 'react';
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
@@ -40,13 +40,20 @@ export function AuthProvider({ children }) {
     authUser();
   }, []);
 
+  function logout() {
+    localStorage.removeItem('apv_token');
+    setAuth({});
+  }
+
   return (
     <AuthContext.Provider
-      value={{ auth, setAuth, loading, setLoading, authUser }}
+      value={{ auth, setAuth, loading, setLoading, authUser, logout }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
 
-export default AuthContext;
+export function useAuth() {
+  return useContext(AuthContext);
+}
