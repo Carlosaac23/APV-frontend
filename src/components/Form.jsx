@@ -44,7 +44,7 @@ export default function Form() {
       </h2>
 
       <form
-        className='mx-auto max-w-150 rounded-xl border border-gray-200 bg-white p-6 shadow-sm max-sm:mx-6'
+        className='mx-6 max-w-150 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm max-sm:mx-6'
         onSubmit={handleSubmit}
       >
         <InputDiv
