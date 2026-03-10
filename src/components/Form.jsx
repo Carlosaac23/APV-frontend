@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
 import InputDiv from '@/components/InputDiv';
 import { usePatients } from '@/context/PatientsProvider';
 
 export default function Form() {
+  const [id, setId] = useState(null);
   const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
   const [email, setEmail] = useState('');
   const [discharged, setDischarged] = useState('');
   const [symptoms, setSymptoms] = useState('');
 
-  const { patients, savePatient } = usePatients();
-  console.log('Patients:', patients);
+  const { savePatient, patient } = usePatients();
+  console.log('Patient:', patient);
+
+  useEffect(() => {
+    if (patient?.name) {
+      setId(patient._id);
+      setName(patient.name);
+      setOwner(patient.owner);
+      setEmail(patient.email);
+      setDischarged(patient.discharged);
+      setSymptoms(patient.symptoms);
+    }
+  }, [patient]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,8 +40,9 @@ export default function Form() {
       return;
     }
 
-    savePatient({ name, owner, email, discharged, symptoms });
+    savePatient({ id, name, owner, email, discharged, symptoms });
 
+    setId(null);
     setName('');
     setOwner('');
     setEmail('');
@@ -99,7 +112,7 @@ export default function Form() {
           className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
           type='submit'
         >
-          Add Patient
+          {id ? 'Save Patient' : 'Add Patient'}
         </button>
       </form>
     </>
