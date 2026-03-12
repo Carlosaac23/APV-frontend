@@ -4,7 +4,9 @@ import AdminLayout from '@/layout/AdminLayout';
 import AuthLayout from '@/layout/AuthLayout';
 import About from '@/pages/About';
 import AdminPatients from '@/pages/AdminPatients';
+import ChangeAccountPassword from '@/pages/ChangeAccountPassword';
 import ConfirmAccount from '@/pages/ConfirmAccount';
+import EditProfile from '@/pages/EditProfile';
 import ForgotPassword from '@/pages/ForgotPassword';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
@@ -27,6 +29,8 @@ export default function App() {
       {/* Protected Routes */}
       <Route path='/admin' element={<AdminLayout />}>
         <Route index element={<AdminPatients />} />
+        <Route path='profile' element={<EditProfile />} />
+        <Route path='change-password' element={<ChangeAccountPassword />} />
       </Route>
     </Routes>
   );
