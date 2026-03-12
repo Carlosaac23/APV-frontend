@@ -1,10 +1,9 @@
-import { useState } from 'react';
-
 import Form from '@/components/Form';
 import PatientsList from '@/components/PatientsList';
+import { useToggleForm } from '@/hooks/useToggleForm';
 
 export default function AdminPatients() {
-  const [showForm, setShowForm] = useState(false);
+  const { showForm, toggleForm } = useToggleForm();
 
   return (
     <section>
@@ -12,7 +11,7 @@ export default function AdminPatients() {
         <button
           className='mx-auto mt-6 w-[80%] rounded-xl bg-sky-400 p-2 text-sm font-bold text-sky-50 shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:hidden md:w-auto md:px-6'
           type='button'
-          onClick={() => setShowForm(!showForm)}
+          onClick={toggleForm}
         >
           {showForm ? 'Hide Form' : 'Show Form'}
         </button>
