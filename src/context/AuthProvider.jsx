@@ -71,6 +71,32 @@ export function AuthProvider({ children }) {
     }
   }
 
+  async function savePassword(passwordData) {
+    const token = localStorage.getItem('apv_token');
+
+    if (!token) {
+      setAuth({});
+      setLoading(false);
+      return;
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    try {
+      const URL = '/veterinarians/update-password';
+      const { data } = await axiosClient.put(URL, passwordData, config);
+
+      toast.success(data?.msg);
+    } catch (error) {
+      toast.error(error.response?.data?.msg);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -80,7 +106,8 @@ export function AuthProvider({ children }) {
         setLoading,
         authUser,
         logout,
-        updateProfile
+        updateProfile,
+        savePassword
       }}
     >
       {children}

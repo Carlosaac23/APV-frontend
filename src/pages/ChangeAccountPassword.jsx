@@ -1,13 +1,11 @@
 import AdminNav from '@/components/AdminNav';
 import VisibilityButton from '@/components/VisibilityButton';
+import { useChangePassword } from '@/hooks/useChangePassword';
 import { useVisibility } from '@/hooks/useVisibility';
 
 export default function ChangeAccountPassword() {
   const { changeVisibility, toggleVisibility } = useVisibility();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+  const { password, setPassword, handleSubmit } = useChangePassword();
 
   return (
     <>
@@ -33,9 +31,13 @@ export default function ChangeAccountPassword() {
               <input
                 className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
                 type={toggleVisibility}
-                name='password'
-                id='password'
+                name='current_password'
+                id='current_password'
                 placeholder='Enter your current password'
+                value={password.current_password}
+                onChange={e =>
+                  setPassword({ ...password, [e.target.name]: e.target.value })
+                }
               />
               <VisibilityButton
                 toggleVisibility={toggleVisibility}
@@ -53,9 +55,13 @@ export default function ChangeAccountPassword() {
               <input
                 className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
                 type={toggleVisibility}
-                name='password'
-                id='password'
+                name='new_password'
+                id='new_password'
                 placeholder='Enter your new password'
+                value={password.new_password}
+                onChange={e =>
+                  setPassword({ ...password, [e.target.name]: e.target.value })
+                }
               />
               <VisibilityButton
                 toggleVisibility={toggleVisibility}
