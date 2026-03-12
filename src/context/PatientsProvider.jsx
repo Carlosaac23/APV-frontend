@@ -2,12 +2,14 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
+import { useAuth } from '@/context/AuthProvider';
 
 const PatientsContext = createContext();
 
 export function PatientsProvider({ children }) {
   const [patients, setPatients] = useState([]);
   const [patient, setPatient] = useState({});
+  const { auth } = useAuth();
 
   useEffect(() => {
     async function getPatients() {
@@ -31,7 +33,7 @@ export function PatientsProvider({ children }) {
     }
 
     getPatients();
-  }, []);
+  }, [auth]);
 
   async function savePatient(patient) {
     const token = localStorage.getItem('apv_token');
