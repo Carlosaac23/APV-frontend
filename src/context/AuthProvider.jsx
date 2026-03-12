@@ -45,9 +45,43 @@ export function AuthProvider({ children }) {
     setAuth({});
   }
 
+  async function updateProfile(profileData) {
+    const token = localStorage.getItem('apv_token');
+
+    if (!token) {
+      setAuth({});
+      setLoading(false);
+      return;
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    try {
+      const URL = `/veterinarians/profile/${profileData._id}`;
+      const { data } = await axiosClient.put(URL, profileData, config);
+
+      toast.success(data.msg);
+    } catch (error) {
+      toast.error(error.response?.data?.msg);
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ auth, setAuth, loading, setLoading, authUser, logout }}
+      value={{
+        auth,
+        setAuth,
+        loading,
+        setLoading,
+        authUser,
+        logout,
+        updateProfile
+      }}
     >
       {children}
     </AuthContext.Provider>
