@@ -14,11 +14,18 @@ const EditProfile = lazy(() => import('@/pages/EditProfile'));
 const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
 const Register = lazy(() => import('@/pages/Register'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
+import { Spinner } from '@/components/ui/spinner';
 import Home from '@/pages/Home';
 
 export default function App() {
   return (
-    <Suspense fallback={<div className='p-6'>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className='fixed inset-0 flex items-center justify-center'>
+          <Spinner className='size-8 text-sky-500' />
+        </div>
+      }
+    >
       <Routes>
         <Route path='/' element={<AuthLayout />}>
           <Route index element={<Home />} />
