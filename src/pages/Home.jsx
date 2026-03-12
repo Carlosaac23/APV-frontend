@@ -13,12 +13,12 @@ export default function Home() {
               Friendly care starts with a better system
             </span>
 
-            <h1 className='mt-6 max-w-2xl text-4xl font-black tracking-tight text-sky-950 md:text-6xl'>
+            <h1 className='mt-6 max-w-2xl text-4xl font-black tracking-tight text-balance text-sky-950 md:text-6xl'>
               Manage your veterinary patients with clarity, speed, and less
               daily stress.
             </h1>
 
-            <p className='mt-5 max-w-2xl text-lg leading-8 text-slate-600'>
+            <p className='mt-5 max-w-2xl text-lg leading-8 text-balance text-slate-600'>
               APV helps you keep patient information tidy, accessible, and easy
               to update so your team can spend more time caring for pets and
               less time chasing records.
@@ -113,7 +113,7 @@ export default function Home() {
                 <h3 className='mt-4 text-xl font-bold text-slate-900'>
                   {feature.title}
                 </h3>
-                <p className='mt-3 leading-7 text-slate-600'>
+                <p className='mt-3 leading-7 text-balance text-slate-600'>
                   {feature.description}
                 </p>
               </article>
