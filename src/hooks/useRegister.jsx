@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { axiosClient } from '../config/axios';
+import { axiosClient } from '@/config/axios';
 
 export function useRegister() {
   const [name, setName] = useState('');
@@ -46,10 +46,10 @@ export function useRegister() {
     }
 
     try {
-      await axiosClient.post('/veterinarians', {
+      const { data } = await axiosClient.post('/veterinarians', {
         name,
         email,
-        password,
+        password
       });
 
       setName('');
@@ -57,9 +57,9 @@ export function useRegister() {
       setPassword('');
       setConfirmPassword('');
 
-      toast.success('Account created successfully.');
+      toast.success(data?.msg);
     } catch (error) {
-      toast.error(error.response.data.msg);
+      toast.error(error?.response?.data?.msg || 'Unexpected error');
     }
   };
 
@@ -72,6 +72,6 @@ export function useRegister() {
     handlePasswordChange,
     confirmPassword,
     handleConfirmPasswordChange,
-    handleSubmit,
+    handleSubmit
   };
 }

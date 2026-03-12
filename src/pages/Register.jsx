@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
+import VisibilityButton from '@/components/VisibilityButton';
 import { useRegister } from '@/hooks/useRegister';
+import { useVisibility } from '@/hooks/useVisibility';
 
 export default function Register() {
   const {
@@ -12,18 +14,19 @@ export default function Register() {
     handlePasswordChange,
     confirmPassword,
     handleConfirmPasswordChange,
-    handleSubmit,
+    handleSubmit
   } = useRegister();
+  const { toggleVisibility, changeVisibility } = useVisibility();
 
   return (
-    <>
+    <section className='mt-10'>
       <div>
-        <h1 className='text-6xl font-black text-sky-400 capitalize'>
+        <h1 className='mx-6 text-center text-3xl font-black text-sky-400 capitalize md:text-5xl lg:text-6xl'>
           Create your account and manage{' '}
           <span className='text-sky-950'>your patients</span>
         </h1>
       </div>
-      <div className='mt-20 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:mt-5'>
+      <div className='mx-auto mt-10 mb-10 max-w-150 rounded-xl border border-gray-200 bg-white p-6 shadow-sm max-sm:mx-6 lg:mt-15'>
         <form onSubmit={handleSubmit}>
           <div className='my-5'>
             <label
@@ -59,7 +62,7 @@ export default function Register() {
               onChange={handleEmailChange}
             />
           </div>
-          <div className='my-5'>
+          <div className='relative my-5'>
             <label
               className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='password'
@@ -68,15 +71,19 @@ export default function Register() {
             </label>
             <input
               className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
-              type='password'
+              type={toggleVisibility}
               name='password'
               id='password'
               placeholder='Enter your password'
               value={password}
               onChange={handlePasswordChange}
             />
+            <VisibilityButton
+              changeVisibility={changeVisibility}
+              toggleVisibility={toggleVisibility}
+            />
           </div>
-          <div className='my-5'>
+          <div className='relative my-5'>
             <label
               className='mb-3 block text-xl font-bold text-sky-800 uppercase'
               htmlFor='confirm-password'
@@ -85,12 +92,16 @@ export default function Register() {
             </label>
             <input
               className='w-full rounded-xl border border-gray-200 bg-gray-50 p-3 shadow-xs placeholder:text-sm placeholder:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid'
-              type='password'
+              type={toggleVisibility}
               name='confirm-password'
               id='confirm-password'
               placeholder='Enter your password'
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
+            />
+            <VisibilityButton
+              changeVisibility={changeVisibility}
+              toggleVisibility={toggleVisibility}
             />
           </div>
           <button
@@ -103,19 +114,19 @@ export default function Register() {
 
         <nav className='mt-10 lg:flex lg:justify-between'>
           <Link
-            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
-            to='/'
+            className='mt-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
+            to='/login'
           >
-            Already have an account? Sign up
+            Already have an account? Sign in
           </Link>
           <Link
-            className='my-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
+            className='mt-4 block text-center text-sm text-gray-500 hover:underline hover:underline-offset-2'
             to='/forgot-password'
           >
             I forgot my password
           </Link>
         </nav>
       </div>
-    </>
+    </section>
   );
 }

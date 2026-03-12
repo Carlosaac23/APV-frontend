@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
-import { axiosClient } from '../config/axios';
+import { axiosClient } from '@/config/axios';
 
 export function useConfirm() {
   const [accountConfirmed, setAccountConfirmed] = useState(false);
@@ -15,15 +15,15 @@ export function useConfirm() {
         const URL = `/veterinarians/confirm/${token}`;
         const { data } = await axiosClient(URL);
 
-        toast.success(data.msg);
         setAccountConfirmed(true);
+        toast.success(data?.msg);
       } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(error?.response?.data?.msg || 'Unexpected error');
       }
     }
 
     confirmAccount();
-  }, []);
+  }, [token]);
 
   return { accountConfirmed };
 }

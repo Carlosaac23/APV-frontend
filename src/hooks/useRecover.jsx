@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { axiosClient } from '../config/axios';
+import { axiosClient } from '@/config/axios';
 
 export function useRecover() {
   const [email, setEmail] = useState('');
@@ -26,9 +26,9 @@ export function useRecover() {
 
       setEmail('');
 
-      toast.success(data.msg);
+      toast.success(data?.msg);
     } catch (error) {
-      toast.error(error.response.data.msg);
+      toast.error(error?.response?.data?.msg || 'Unexpected error');
     }
   };
 
