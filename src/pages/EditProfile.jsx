@@ -1,28 +1,8 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-
 import AdminNav from '@/components/AdminNav';
-import { useAuth } from '@/context/AuthProvider';
+import { useEditProfile } from '@/hooks/useEditProfile';
 
 export default function EditProfile() {
-  const { auth, updateProfile } = useAuth();
-  const [profile, setProfile] = useState({});
-
-  useEffect(() => {
-    setProfile(auth);
-  }, [auth]);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const { name, email } = profile;
-
-    if ([name, email].includes('')) {
-      toast.error('Name and Email fields are required');
-      return;
-    }
-
-    await updateProfile(profile);
-  }
+  const { profile, setProfile, handleSubmit } = useEditProfile();
 
   return (
     <>
