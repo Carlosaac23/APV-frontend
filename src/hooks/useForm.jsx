@@ -12,7 +12,6 @@ export function useForm() {
   const [symptoms, setSymptoms] = useState('');
 
   const { savePatient, patient } = usePatients();
-  console.log('Patient:', patient);
 
   useEffect(() => {
     if (patient?.name) {

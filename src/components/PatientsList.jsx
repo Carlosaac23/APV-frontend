@@ -3,7 +3,6 @@ import { usePatients } from '@/context/PatientsProvider';
 
 export default function PatientsList() {
   const { patients } = usePatients();
-  console.log(patients);
 
   return (
     <>
