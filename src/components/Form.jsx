@@ -30,26 +30,30 @@ export default function Form() {
         <InputDiv
           type='text'
           name='name'
-          placeholder='Hook'
+          placeholder='Hook...'
           label='Pet Name'
           value={name}
           onChange={e => setName(e.target.value)}
+          autoComplete='off'
         />
         <InputDiv
           type='text'
           name='owner'
-          placeholder='John Doe'
+          placeholder='John Doe...'
           label='Pet Owner'
           value={owner}
           onChange={e => setOwner(e.target.value)}
+          autoComplete='name'
         />
         <InputDiv
           type='email'
           name='email'
-          placeholder='johndoe@hotmail.com'
+          placeholder='johndoe@hotmail.com...'
           label='Owner Email'
           value={email}
           onChange={e => setEmail(e.target.value)}
+          autoComplete='email'
+          spellCheck='false'
         />
         <InputDiv
           type='date'
@@ -57,6 +61,7 @@ export default function Form() {
           label='Discharged Date'
           value={discharged}
           onChange={e => setDischarged(e.target.value)}
+          autoComplete='off'
         />
         <div className='mb-5'>
           <label
@@ -72,11 +77,12 @@ export default function Form() {
             placeholder="Don't want to eat..."
             value={symptoms}
             onChange={e => setSymptoms(e.target.value)}
+            autoComplete='off'
           ></textarea>
         </div>
 
         <button
-          className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-transform duration-150 ease-out hover:cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
+          className='mt-2 w-full rounded-xl bg-sky-400 px-10 py-3 font-bold text-sky-50 uppercase shadow-sm transition-all duration-150 ease-out hover:cursor-pointer hover:opacity-70 focus:outline-2 focus:outline-offset-2 focus:outline-sky-300 focus:outline-solid active:scale-97 md:w-auto'
           type='submit'
         >
           {id ? 'Save Patient' : 'Add Patient'}

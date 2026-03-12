@@ -4,7 +4,9 @@ export default function InputDiv({
   placeholder,
   label,
   value,
-  onChange
+  onChange,
+  autoComplete,
+  spellCheck
 }) {
   return (
     <div className='mb-5'>
@@ -22,6 +24,8 @@ export default function InputDiv({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        autoComplete={autoComplete}
+        spellCheck={spellCheck}
       />
     </div>
   );

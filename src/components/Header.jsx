@@ -26,6 +26,7 @@ export default function Header() {
         className='cursor-pointer md:hidden'
         type='button'
         onClick={toggleMenu}
+        aria-label='button'
       >
         <Menu size={30} />
       </button>
@@ -37,6 +38,7 @@ export default function Header() {
           className='absolute top-8 right-10 cursor-pointer md:hidden'
           type='button'
           onClick={toggleMenu}
+          aria-label='button'
         >
           <X size={30} />
         </button>

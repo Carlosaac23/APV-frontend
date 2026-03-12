@@ -17,7 +17,7 @@ export default function PatientsList() {
       ) : (
         <>
           <h2 className='text-sly-950 my-6 text-center font-bold'>
-            There are not patients
+            No Patients Yet
           </h2>
         </>
       )}
