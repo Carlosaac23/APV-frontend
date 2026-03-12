@@ -78,7 +78,10 @@ export default function Register() {
               value={password}
               onChange={handlePasswordChange}
             />
-            <VisibilityButton />
+            <VisibilityButton
+              changeVisibility={changeVisibility}
+              toggleVisibility={toggleVisibility}
+            />
           </div>
           <div className='relative my-5'>
             <label
