@@ -48,7 +48,7 @@ export default function Header() {
               <Link
                 onClick={closeMenu}
                 className='hover:underline hover:underline-offset-2'
-                to='/patients'
+                to='/admin'
               >
                 Patients
               </Link>
