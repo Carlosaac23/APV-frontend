@@ -56,7 +56,9 @@ export function PatientsProvider({ children }) {
             ? { ...patientState, ...data }
             : patientState
         );
+
         setPatients(updatedPatients);
+        toast.success(data?.msg);
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +69,9 @@ export function PatientsProvider({ children }) {
     // If not, it means the patient is being added
     try {
       const { data } = await axiosClient.post('/patients', patient, config);
-      setPatients([data, ...patients]);
+
+      setPatients([data.patient, ...patients]);
+      toast.success(data?.msg);
     } catch (error) {
       console.error(error);
     }
